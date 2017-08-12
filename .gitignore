@@ -1,0 +1,4 @@
+bin/
+UpgradeLog* 
+obj/
+AccessManagementService.csproj.user

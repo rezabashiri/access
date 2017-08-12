@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MPOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phones" Type="nvarchar" MaxLength="50" />
+          <Property Name="Faxes" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmailAdress" Type="nvarchar" MaxLength="155" />
+          <Property Name="DeparetmentChartXML" Type="nvarchar(max)" />
+          <Property Name="LogoPath" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsNeerdToConfirm" Type="bit" />
+          <Property Name="IsNeedConfirmToChangePassword" Type="bit" />
+          <Property Name="IsVisible" Type="bit" />
+          <Property Name="Setting" Type="xml" />
+        </EntityType>
+        <EntityType Name="Departments_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VirtualAddress" Type="varchar" MaxLength="100" />
+          <Property Name="EntityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntityFarsiName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntityType" Type="int" />
+          <Property Name="MenuDisplayTitle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="AllLocationAccess" Type="bit" Nullable="false" />
+          <Property Name="AllTimesAccess" Type="bit" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="Saturday" Type="int" />
+          <Property Name="Sunday" Type="int" />
+          <Property Name="Monday" Type="int" />
+          <Property Name="Tuesday" Type="int" />
+          <Property Name="Wednesday" Type="int" />
+          <Property Name="Thursday" Type="int" />
+          <Property Name="Friday" Type="int" />
+          <Property Name="Priority" Type="int" />
+        </EntityType>
+        <EntityType Name="Groups_Rights">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="RightID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups_Roles">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrganiztionRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationRoleName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ParentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RightName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="RelatedService" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RightType" Type="smallint" Nullable="false" />
+          <Property Name="IsConfirmable" Type="nvarchar" MaxLength="255" />
+          <Property Name="OrganizationRoleID" Type="int" />
+          <Property Name="EntityID" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationRoleID" Type="int" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="512" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="LastRefreshTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Roles_Rights">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RightID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="200" />
+          <Property Name="NewPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsOnline" Type="bit" Nullable="false" />
+          <Property Name="IsConfirm" Type="bit" />
+          <Property Name="LastLoginTime" Type="datetime" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="MarriedStatus" Type="bit" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="CountryNo" Type="smallint" />
+          <Property Name="LanguageNo" Type="tinyint" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="E_Mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="EditionDate" Type="datetime" />
+          <Property Name="LastRefreshTime" Type="datetime" />
+          <Property Name="LastChangePassDate" Type="datetime" />
+          <Property Name="NativeID" Type="nvarchar" MaxLength="200" />
+          <Property Name="PersonnelID" Type="nvarchar" MaxLength="200" />
+          <Property Name="ActiveSessionID" Type="varchar" MaxLength="200" />
+          <Property Name="SystemProfile" Type="xml" />
+          <Property Name="IPLocation" Type="varchar" MaxLength="20" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Departments_Roles_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Departments_Roles" Type="Self.Departments_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Departments_Roles">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Departments_Roles_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Departments_Roles" Type="Self.Departments_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Departments_Roles">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Rights_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Groups_Rights" Type="Self.Groups_Rights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groups_Rights">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Rights_Right">
+          <End Role="Right" Type="Self.Right" Multiplicity="1" />
+          <End Role="Groups_Rights" Type="Self.Groups_Rights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groups_Rights">
+              <PropertyRef Name="RightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Roles_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Groups_Roles" Type="Self.Groups_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groups_Roles">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Roles_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Groups_Roles" Type="Self.Groups_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groups_Roles">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrganiztionRole_OrganiztionRole">
+          <End Role="OrganiztionRole" Type="Self.OrganiztionRole" Multiplicity="0..1" />
+          <End Role="OrganiztionRole1" Type="Self.OrganiztionRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganiztionRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganiztionRole1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_OrganiztionRole">
+          <End Role="OrganiztionRole" Type="Self.OrganiztionRole" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganiztionRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="OrganizationRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleRight_Right">
+          <End Role="Right" Type="Self.Right" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Roles_Rights" Type="Self.Roles_Rights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles_Rights">
+              <PropertyRef Name="RightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleRight_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Roles_Rights" Type="Self.Roles_Rights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles_Rights">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DoLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="IPLocation" Type="varchar" Mode="In" />
+          <Parameter Name="SessionId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DoLogout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRoleGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRolesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="RolesIds" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="InsertDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phones" Type="nvarchar" Mode="In" />
+          <Parameter Name="Faxes" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adress" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailAdress" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeparetmentChartXML" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="LogoPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsNeerdToConfirm" Type="bit" Mode="In" />
+          <Parameter Name="IsNeedConfirmToChangePassword" Type="bit" Mode="In" />
+          <Parameter Name="IsVisible" Type="bit" Mode="In" />
+          <Parameter Name="seeting" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="ListDeparmentsOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ListRolesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Right_EntityGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+          <Parameter Name="RelatedService" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Right_EntityValidRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+          <Parameter Name="RelatedService" Type="nvarchar" Mode="In" />
+          <Parameter Name="EntityName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Right_EntityValidRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RolesIDs" Type="varchar" Mode="In" />
+          <Parameter Name="RelatedService" Type="nvarchar" Mode="In" />
+          <Parameter Name="EntityName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Right_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+          <Parameter Name="RightType" Type="int" Mode="In" />
+          <Parameter Name="RightName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RelatedService" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrganizationRoleId" Type="int" Mode="In" />
+          <Parameter Name="EntityId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Right_ValidByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RoleIDs" Type="varchar" Mode="In" />
+          <Parameter Name="RightName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Right_ValidByServiceName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="RoleIDs" Type="varchar" Mode="In" />
+          <Parameter Name="ServiceName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SetOrganizationRoleParrentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="ParrentID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MPOModelStoreContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Departments_Roles" EntityType="Self.Departments_Roles" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Entity" EntityType="Self.Entity" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Groups_Rights" EntityType="Self.Groups_Rights" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Groups_Roles" EntityType="Self.Groups_Roles" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="OrganiztionRole" EntityType="Self.OrganiztionRole" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Right" EntityType="Self.Right" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="Roles_Rights" EntityType="Self.Roles_Rights" Schema="asc" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="asc" store:Type="Tables" />
+          <AssociationSet Name="FK_Departments_Roles_Department" Association="Self.FK_Departments_Roles_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Departments_Roles" EntitySet="Departments_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Departments_Roles_Role" Association="Self.FK_Departments_Roles_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Departments_Roles" EntitySet="Departments_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Rights_Group" Association="Self.FK_Groups_Rights_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Groups_Rights" EntitySet="Groups_Rights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Rights_Right" Association="Self.FK_Groups_Rights_Right">
+            <End Role="Right" EntitySet="Right" />
+            <End Role="Groups_Rights" EntitySet="Groups_Rights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Roles_Group" Association="Self.FK_Groups_Roles_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Groups_Roles" EntitySet="Groups_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Roles_Role" Association="Self.FK_Groups_Roles_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Groups_Roles" EntitySet="Groups_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrganiztionRole_OrganiztionRole" Association="Self.FK_OrganiztionRole_OrganiztionRole">
+            <End Role="OrganiztionRole" EntitySet="OrganiztionRole" />
+            <End Role="OrganiztionRole1" EntitySet="OrganiztionRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_OrganiztionRole" Association="Self.FK_Role_OrganiztionRole">
+            <End Role="OrganiztionRole" EntitySet="OrganiztionRole" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_User" Association="Self.FK_Role_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleRight_Right" Association="Self.FK_RoleRight_Right">
+            <End Role="Right" EntitySet="Right" />
+            <End Role="Roles_Rights" EntitySet="Roles_Rights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleRight_Role" Association="Self.FK_RoleRight_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Roles_Rights" EntitySet="Roles_Rights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MPOModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AccessEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Entities" EntityType="MPOModel.Entity" />
+          <EntitySet Name="Rights" EntityType="MPOModel.Right" />
+          <EntitySet Name="Users" EntityType="MPOModel.User" />
+          <AssociationSet Name="FK_Right_Entity" Association="MPOModel.FK_Right_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Right" EntitySet="Rights" />
+          </AssociationSet>
+          <FunctionImport Name="DoLogin">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="IPLocation" Mode="In" Type="String" />
+            <Parameter Name="SessionId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DoLogout">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetRoleGroup" ReturnType="Collection(MPOModel.GetRoleGroup_Result)">
+          <Parameter Name="RoleId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetRolesOfUser">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="RolesIds" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ListRolesOfUser" EntitySet="Roles" ReturnType="Collection(MPOModel.Role)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="LoginCheck">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Right_EntityGet" EntitySet="Entities" ReturnType="Collection(MPOModel.Entity)">
+            <Parameter Name="RoleId" Mode="In" Type="Int32" />
+            <Parameter Name="RelatedService" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Right_EntityValidRole" ReturnType="Collection(Int32)">
+            <Parameter Name="RoleId" Mode="In" Type="Int32" />
+            <Parameter Name="RelatedService" Mode="In" Type="String" />
+            <Parameter Name="EntityName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Right_EntityValidRoles" ReturnType="Collection(Int32)">
+            <Parameter Name="RolesIDs" Mode="In" Type="String" />
+            <Parameter Name="RelatedService" Mode="In" Type="String" />
+            <Parameter Name="EntityName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Right_Get" EntitySet="Rights" ReturnType="Collection(MPOModel.Right)">
+            <Parameter Name="RoleId" Mode="In" Type="Int32" />
+            <Parameter Name="RightType" Mode="In" Type="Int32" />
+            <Parameter Name="RightName" Mode="In" Type="String" />
+            <Parameter Name="RelatedService" Mode="In" Type="String" />
+            <Parameter Name="OrganizationRoleId" Mode="In" Type="Int32" />
+            <Parameter Name="EntityId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Right_ValidByName" ReturnType="Collection(Int32)">
+            <Parameter Name="RoleIDs" Mode="In" Type="String" />
+            <Parameter Name="RightName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Groups" EntityType="MPOModel.Group" />
+          <AssociationSet Name="Groups_Rights" Association="MPOModel.Groups_Rights">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Right" EntitySet="Rights" />
+          </AssociationSet>
+          <EntitySet Name="OrganiztionRoles" EntityType="MPOModel.OrganiztionRole" />
+          <AssociationSet Name="FK_OrganiztionRole_OrganiztionRole" Association="MPOModel.FK_OrganiztionRole_OrganiztionRole">
+            <End Role="OrganiztionRole" EntitySet="OrganiztionRoles" />
+            <End Role="OrganiztionRole1" EntitySet="OrganiztionRoles" />
+          </AssociationSet>
+          <FunctionImport Name="SetOrganizationRoleParrentID">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ParrentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Roles" EntityType="MPOModel.Role" />
+          <AssociationSet Name="FK_Role_OrganiztionRole" Association="MPOModel.FK_Role_OrganiztionRole">
+            <End Role="OrganiztionRole" EntitySet="OrganiztionRoles" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_User" Association="MPOModel.FK_Role_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Groups_Roles" Association="MPOModel.Groups_Roles">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Roles_Rights" Association="MPOModel.Roles_Rights">
+            <End Role="Right" EntitySet="Rights" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <FunctionImport Name="Right_ValidByServiceName" ReturnType="Collection(Int32)">
+            <Parameter Name="RoleIDs" Mode="In" Type="String" />
+            <Parameter Name="ServiceName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ListDeparmentsOfUser" EntitySet="Departments" ReturnType="Collection(MPOModel.Department)">
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Departments" EntityType="MPOModel.Department" />
+          <AssociationSet Name="FK_User_Department" Association="MPOModel.FK_User_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Departments_Roles" Association="MPOModel.Departments_Roles">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <FunctionImport Name="InsertDepartment" ReturnType="Collection(Decimal)">
+            <Parameter Name="DepartmentName" Mode="In" Type="String" />
+            <Parameter Name="Phones" Mode="In" Type="String" />
+            <Parameter Name="Faxes" Mode="In" Type="String" />
+            <Parameter Name="Adress" Mode="In" Type="String" />
+            <Parameter Name="EmailAdress" Mode="In" Type="String" />
+            <Parameter Name="DeparetmentChartXML" Mode="In" Type="String" />
+            <Parameter Name="LogoPath" Mode="In" Type="String" />
+            <Parameter Name="IsNeerdToConfirm" Mode="In" Type="Boolean" />
+            <Parameter Name="IsNeedConfirmToChangePassword" Mode="In" Type="Boolean" />
+            <Parameter Name="IsVisible" Mode="In" Type="Boolean" />
+            <Parameter Name="seeting" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="VirtualAddress" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="EntityName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EntityFarsiName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EntityType" Type="Int32" />
+          <Property Name="MenuDisplayTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Rights" Relationship="MPOModel.FK_Right_Entity" FromRole="Entity" ToRole="Right" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RightName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="RelatedService" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="RightType" Type="Int16" Nullable="false" />
+          <Property Name="IsConfirmable" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="OrganizationRoleID" Type="Int32" />
+          <Property Name="EntityID" Type="Int32" />
+          <NavigationProperty Name="Entity" Relationship="MPOModel.FK_Right_Entity" FromRole="Right" ToRole="Entity" />
+          <NavigationProperty Name="Groups" Relationship="MPOModel.Groups_Rights" FromRole="Right" ToRole="Group" />
+          <NavigationProperty Name="Roles" Relationship="MPOModel.Roles_Rights" FromRole="Right" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="NewPassword" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsOnline" Type="Boolean" Nullable="false" />
+          <Property Name="IsConfirm" Type="Boolean" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="MarriedStatus" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="CountryNo" Type="Int16" />
+          <Property Name="LanguageNo" Type="Byte" />
+          <Property Name="Address" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="E_Mail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="EditionDate" Type="DateTime" Precision="3" />
+          <Property Name="LastRefreshTime" Type="DateTime" Precision="3" />
+          <Property Name="LastChangePassDate" Type="DateTime" Precision="3" />
+          <Property Name="NativeID" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="PersonnelID" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ActiveSessionID" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="SystemProfile" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IPLocation" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Roles" Relationship="MPOModel.FK_Role_User" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Department" Relationship="MPOModel.FK_User_Department" FromRole="User" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK_Right_Entity">
+          <End Role="Entity" Type="MPOModel.Entity" Multiplicity="0..1" />
+          <End Role="Right" Type="MPOModel.Right" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right">
+              <PropertyRef Name="EntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetRoleGroup_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="AllLocationAccess" Nullable="false" />
+          <Property Type="Boolean" Name="AllTimesAccess" Nullable="false" />
+          <Property Type="DateTime" Name="ExpirationDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Saturday" Nullable="false" />
+          <Property Type="Int32" Name="Sunday" Nullable="false" />
+          <Property Type="Int32" Name="Monday" Nullable="false" />
+          <Property Type="Int32" Name="Tuesday" Nullable="false" />
+          <Property Type="Int32" Name="Wednesday" Nullable="false" />
+          <Property Type="Int32" Name="Thursday" Nullable="false" />
+          <Property Type="Int32" Name="Friday" Nullable="false" />
+          <Property Type="Int32" Name="Priority" Nullable="false" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ListRolesOfUser_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="OrganizationRoleID" Nullable="true" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="512" />
+          <Property Type="Int32" Name="UserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="Int32" Name="DepartmentID" Nullable="true" />
+          <Property Type="DateTime" Name="LastRefreshTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Right_EntityGet_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="VirtualAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EntityName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EntityFarsiName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="EntityType" Nullable="true" />
+          <Property Type="String" Name="MenuDisplayTitle" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GroupName" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreationDate" Precision="3" />
+          <Property Type="Boolean" Name="AllLocationAccess" Nullable="false" />
+          <Property Type="Boolean" Name="AllTimesAccess" Nullable="false" />
+          <Property Type="DateTime" Name="ExpirationDate" Precision="3" />
+          <Property Type="Int32" Name="Saturday" />
+          <Property Type="Int32" Name="Sunday" />
+          <Property Type="Int32" Name="Monday" />
+          <Property Type="Int32" Name="Tuesday" />
+          <Property Type="Int32" Name="Wednesday" />
+          <Property Type="Int32" Name="Thursday" />
+          <Property Type="Int32" Name="Friday" />
+          <Property Type="Int32" Name="Priority" />
+          <NavigationProperty Name="Rights" Relationship="MPOModel.Groups_Rights" FromRole="Group" ToRole="Right" />
+          <NavigationProperty Name="Roles" Relationship="MPOModel.Groups_Roles" FromRole="Group" ToRole="Role" />
+        </EntityType>
+        <Association Name="Groups_Rights">
+          <End Type="MPOModel.Group" Role="Group" Multiplicity="*" />
+          <End Type="MPOModel.Right" Role="Right" Multiplicity="*" />
+        </Association>
+        <EntityType Name="OrganiztionRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationRoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" />
+          <NavigationProperty Name="OrganiztionRole1" Relationship="MPOModel.FK_OrganiztionRole_OrganiztionRole" FromRole="OrganiztionRole" ToRole="OrganiztionRole1" />
+          <NavigationProperty Name="OrganiztionRole2" Relationship="MPOModel.FK_OrganiztionRole_OrganiztionRole" FromRole="OrganiztionRole1" ToRole="OrganiztionRole" />
+          <NavigationProperty Name="Roles" Relationship="MPOModel.FK_Role_OrganiztionRole" FromRole="OrganiztionRole" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_OrganiztionRole_OrganiztionRole">
+          <End Type="MPOModel.OrganiztionRole" Role="OrganiztionRole" Multiplicity="0..1" />
+          <End Type="MPOModel.OrganiztionRole" Role="OrganiztionRole1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganiztionRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganiztionRole1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationRoleID" Type="Int32" />
+          <Property Name="RoleName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="LastRefreshTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrganiztionRole" Relationship="MPOModel.FK_Role_OrganiztionRole" FromRole="Role" ToRole="OrganiztionRole" />
+          <NavigationProperty Name="User" Relationship="MPOModel.FK_Role_User" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Groups" Relationship="MPOModel.Groups_Roles" FromRole="Role" ToRole="Group" />
+          <NavigationProperty Name="Rights" Relationship="MPOModel.Roles_Rights" FromRole="Role" ToRole="Right" />
+          <NavigationProperty Name="Departments" Relationship="MPOModel.Departments_Roles" FromRole="Role" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK_Role_OrganiztionRole">
+          <End Type="MPOModel.OrganiztionRole" Role="OrganiztionRole" Multiplicity="0..1" />
+          <End Type="MPOModel.Role" Role="Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganiztionRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="OrganizationRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_User">
+          <End Type="MPOModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MPOModel.Role" Role="Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Groups_Roles">
+          <End Type="MPOModel.Group" Role="Group" Multiplicity="*" />
+          <End Type="MPOModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <Association Name="Roles_Rights">
+          <End Type="MPOModel.Right" Role="Right" Multiplicity="*" />
+          <End Type="MPOModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Faxes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAdress" Type="String" MaxLength="155" FixedLength="false" Unicode="true" />
+          <Property Name="DeparetmentChartXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsNeerdToConfirm" Type="Boolean" />
+          <Property Name="IsNeedConfirmToChangePassword" Type="Boolean" />
+          <Property Name="IsVisible" Type="Boolean" />
+          <Property Name="Setting" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="MPOModel.FK_User_Department" FromRole="Department" ToRole="User" />
+          <NavigationProperty Name="Roles" Relationship="MPOModel.Departments_Roles" FromRole="Department" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_User_Department">
+          <End Type="MPOModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="MPOModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Departments_Roles">
+          <End Type="MPOModel.Department" Role="Department" Multiplicity="*" />
+          <End Type="MPOModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MPOModelStoreContainer" CdmEntityContainer="AccessEntities">
+          <EntitySetMapping Name="Entities">
+            <EntityTypeMapping TypeName="MPOModel.Entity">
+              <MappingFragment StoreEntitySet="Entity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VirtualAddress" ColumnName="VirtualAddress" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="EntityFarsiName" ColumnName="EntityFarsiName" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="MenuDisplayTitle" ColumnName="MenuDisplayTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rights">
+            <EntityTypeMapping TypeName="MPOModel.Right">
+              <MappingFragment StoreEntitySet="Right">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RightName" ColumnName="RightName" />
+                <ScalarProperty Name="RelatedService" ColumnName="RelatedService" />
+                <ScalarProperty Name="RightType" ColumnName="RightType" />
+                <ScalarProperty Name="IsConfirmable" ColumnName="IsConfirmable" />
+                <ScalarProperty Name="OrganizationRoleID" ColumnName="OrganizationRoleID" />
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MPOModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MarriedStatus" ColumnName="MarriedStatus" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="CountryNo" ColumnName="CountryNo" />
+                <ScalarProperty Name="LanguageNo" ColumnName="LanguageNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="E_Mail" ColumnName="E_Mail" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="EditionDate" ColumnName="EditionDate" />
+                <ScalarProperty Name="LastRefreshTime" ColumnName="LastRefreshTime" />
+                <ScalarProperty Name="LastChangePassDate" ColumnName="LastChangePassDate" />
+                <ScalarProperty Name="NativeID" ColumnName="NativeID" />
+                <ScalarProperty Name="PersonnelID" ColumnName="PersonnelID" />
+                <ScalarProperty Name="ActiveSessionID" ColumnName="ActiveSessionID" />
+                <ScalarProperty Name="SystemProfile" ColumnName="SystemProfile" />
+                <ScalarProperty Name="IPLocation" ColumnName="IPLocation" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DoLogin" FunctionName="MPOModel.Store.DoLogin" />
+          <FunctionImportMapping FunctionImportName="DoLogout" FunctionName="MPOModel.Store.DoLogout" />
+          <FunctionImportMapping FunctionImportName="GetRoleGroup" FunctionName="MPOModel.Store.GetRoleGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MPOModel.GetRoleGroup_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="AllLocationAccess" ColumnName="AllLocationAccess" />
+                <ScalarProperty Name="AllTimesAccess" ColumnName="AllTimesAccess" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRolesOfUser" FunctionName="MPOModel.Store.GetRolesOfUser" />
+          <FunctionImportMapping FunctionImportName="ListRolesOfUser" FunctionName="MPOModel.Store.ListRolesOfUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LoginCheck" FunctionName="MPOModel.Store.LoginCheck" />
+          <FunctionImportMapping FunctionImportName="Right_EntityGet" FunctionName="MPOModel.Store.Right_EntityGet">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Right_EntityValidRole" FunctionName="MPOModel.Store.Right_EntityValidRole" />
+          <FunctionImportMapping FunctionImportName="Right_EntityValidRoles" FunctionName="MPOModel.Store.Right_EntityValidRoles" />
+          <FunctionImportMapping FunctionImportName="Right_Get" FunctionName="MPOModel.Store.Right_Get" />
+          <FunctionImportMapping FunctionImportName="Right_ValidByName" FunctionName="MPOModel.Store.Right_ValidByName" />
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="MPOModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+                <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="AllTimesAccess" ColumnName="AllTimesAccess" />
+                <ScalarProperty Name="AllLocationAccess" ColumnName="AllLocationAccess" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Groups_Rights" TypeName="MPOModel.Groups_Rights" StoreEntitySet="Groups_Rights">
+            <EndProperty Name="Right">
+              <ScalarProperty Name="ID" ColumnName="RightID" />
+            </EndProperty>
+            <EndProperty Name="Group">
+              <ScalarProperty Name="ID" ColumnName="GroupID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="OrganiztionRoles">
+            <EntityTypeMapping TypeName="MPOModel.OrganiztionRole">
+              <MappingFragment StoreEntitySet="OrganiztionRole">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="OrganizationRoleName" ColumnName="OrganizationRoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SetOrganizationRoleParrentID" FunctionName="MPOModel.Store.SetOrganizationRoleParrentID" />
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="MPOModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="LastRefreshTime" ColumnName="LastRefreshTime" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="OrganizationRoleID" ColumnName="OrganizationRoleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Groups_Roles" TypeName="MPOModel.Groups_Roles" StoreEntitySet="Groups_Roles">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Group">
+              <ScalarProperty Name="ID" ColumnName="GroupID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Roles_Rights" TypeName="MPOModel.Roles_Rights" StoreEntitySet="Roles_Rights">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Right">
+              <ScalarProperty Name="ID" ColumnName="RightID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Right_ValidByServiceName" FunctionName="MPOModel.Store.Right_ValidByServiceName" />
+          <FunctionImportMapping FunctionImportName="ListDeparmentsOfUser" FunctionName="MPOModel.Store.ListDeparmentsOfUser">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="MPOModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Setting" ColumnName="Setting" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="IsNeedConfirmToChangePassword" ColumnName="IsNeedConfirmToChangePassword" />
+                <ScalarProperty Name="IsNeerdToConfirm" ColumnName="IsNeerdToConfirm" />
+                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+                <ScalarProperty Name="DeparetmentChartXML" ColumnName="DeparetmentChartXML" />
+                <ScalarProperty Name="EmailAdress" ColumnName="EmailAdress" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Faxes" ColumnName="Faxes" />
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Departments_Roles" TypeName="MPOModel.Departments_Roles" StoreEntitySet="Departments_Roles">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Department">
+              <ScalarProperty Name="ID" ColumnName="DepartmentID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="InsertDepartment" FunctionName="MPOModel.Store.InsertDepartment" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
