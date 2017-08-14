@@ -114,10 +114,14 @@
     <Content Include="Controls\UscRoleSelect.ascx" />
     <Content Include="Controls\UscSignUp.ascx" />
     <Content Include="Controls\UscVerification.ascx" />
+    <Content Include="Resources\calendar.js" />
+    <Content Include="Resources\flipTimer.css" />
     <Content Include="Default.aspx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart.ascx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
     <EmbeddedResource Include="Resources\loadingAnimation.gif" />
+    <Content Include="js\jquery-3.2.1.min.js" />
+    <Content Include="jqueryflipTimer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -286,6 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CSS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

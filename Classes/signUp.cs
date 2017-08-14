@@ -41,13 +41,13 @@ namespace AccessManagementService.Classes
                 if (user.Count == 1)
                 {
 
-                    if (user[0].IsConfirm == false)
+                    if (user[0].IsActive == false)
                     {
                         result = -1; // this user is exist but not confirm code yet
                         return result;
                     }
 
-                    //update is_confirm , is_active true
+                    //update is_active true
                     result = user[0].ID;
                 }
             }
@@ -63,7 +63,7 @@ namespace AccessManagementService.Classes
 
             if (ID > 0)// can update
             {
-                DB.sp_active_User(true, true, ID);
+                DB.sp_active_User(true, ID);
             }
         }
 

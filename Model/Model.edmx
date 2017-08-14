@@ -377,7 +377,6 @@
           <Parameter Name="ParrentID" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_active_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="isConfirm" Type="bit" Mode="In" />
           <Parameter Name="isActive" Type="bit" Mode="In" />
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -628,7 +627,6 @@
             <Parameter Name="Mobile" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_active_User">
-            <Parameter Name="isConfirm" Mode="In" Type="Boolean" />
             <Parameter Name="isActive" Mode="In" Type="Boolean" />
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>

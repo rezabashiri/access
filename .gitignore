@@ -1,4 +1,7 @@
 bin/
 UpgradeLog* 
 obj/
+packages/
 AccessManagementService.csproj.user
+!bin/WebUtilityv2
+Properties/

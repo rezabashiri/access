@@ -1030,7 +1030,7 @@
             <footer>
 
                  <uc1:loadmoroorgarancontrols ID="load" runat="server" LoadValidationScripts="true"  LoadValidationStyle="true"></uc1:loadmoroorgarancontrols>
-                <uc1:moroorgaranbutton ID="bt" runat="server" ValidateionType="validate" OnClick="btnSignUp_Click" CssClass="btn  btn-lg btn-block mt-15" Text="ثبت نام" />
+                <uc1:moroorgaranbutton ID="bt" runat="server" ValidateionType="validate" Width="45%" OnClick="btnSignUp_Click" CssClass="btn  btn-lg btn-block mt-15" Text="ثبت نام" />
 
                 
                 <asp:Button ID="btnCancel" Width="45%" OnClick="btnCancel_Click" CssClass="btn btn-danger" ValidateRequestMode="Enabled" CausesValidation="true" ValidationGroup="aut" runat="server" Text="انصراف" />

@@ -468,12 +468,8 @@ namespace AccessManagementService.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter);
         }
     
-        public virtual int sp_active_User(Nullable<bool> isConfirm, Nullable<bool> isActive, Nullable<int> iD)
+        public virtual int sp_active_User(Nullable<bool> isActive, Nullable<int> iD)
         {
-            var isConfirmParameter = isConfirm.HasValue ?
-                new ObjectParameter("isConfirm", isConfirm) :
-                new ObjectParameter("isConfirm", typeof(bool));
-    
             var isActiveParameter = isActive.HasValue ?
                 new ObjectParameter("isActive", isActive) :
                 new ObjectParameter("isActive", typeof(bool));
@@ -482,7 +478,7 @@ namespace AccessManagementService.Model
                 new ObjectParameter("ID", iD) :
                 new ObjectParameter("ID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isConfirmParameter, isActiveParameter, iDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isActiveParameter, iDParameter);
         }
     }
 }
