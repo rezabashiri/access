@@ -16,8 +16,8 @@ namespace AccessManagementService.Model
     {
         public Department()
         {
-            this.Users = new HashSet<User>();
             this.Roles = new HashSet<Role>();
+            this.Users = new HashSet<User>();
         }
     
         public int ID { get; set; }
@@ -33,7 +33,7 @@ namespace AccessManagementService.Model
         public Nullable<bool> IsVisible { get; set; }
         public string Setting { get; set; }
     
-        public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

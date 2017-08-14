@@ -979,7 +979,7 @@
             </div>
         			<div class="smart-form client-form">
 								<header>
-									ورود به سامانه هوشمند مرورگران
+									ورود به سامانه 
 								</header>
 
 								<fieldset>
@@ -988,14 +988,14 @@
 										<label class="label">نام کاربری</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
 											<asp:TextBox ID="txtUserName"  CssClass="form-control" runat="server"></asp:TextBox>
-											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> نام کاریری یا ایمیل خود را وارد نمائید</b></label>
 									</section>
 
 									<section>
 										<label class="label">رمز عبور</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
 											 <asp:TextBox ID="txtPassword"   TextMode="Password" CssClass="form-control"  runat="server"></asp:TextBox>
-											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>رمز عبور خود را وارد نمائید</b> </label>
 										<div class="note">
 											<a href="#">رمز عبور فراموش کردید؟</a>
 										</div>

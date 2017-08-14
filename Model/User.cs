@@ -50,7 +50,7 @@ namespace AccessManagementService.Model
         public string Phone { get; set; }
         public string Mobile { get; set; }
     
-        public virtual ICollection<Role> Roles { get; set; }
         public virtual Department Department { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UscControl.ascx.cs" ClassName="AccessManagementService.Controls.UserControl"  Inherits="AccessManagementService.Controls.UscControl" %>
-<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="WebUtilityv2" Namespace="Telerik.Web.UI.DynamicData" TagPrefix="dynamic" %>
  <ef:EntityDataSource ID="GridDataSource" AutoGenerateWhereClause="false" Where="it.ID=@ID"   ConnectionString="name=AccessEntities"  DefaultContainerName="AccessEntities" EntitySetName="Users"  EnableInsert="true" runat="server" EnableDelete="true" EnableUpdate="true">
  <WhereParameters>
      <asp:SessionParameter Name="ID" Type="Int32" SessionField="11LoggedInUser" />

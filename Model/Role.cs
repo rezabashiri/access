@@ -30,9 +30,9 @@ namespace AccessManagementService.Model
         public Nullable<System.DateTime> LastRefreshTime { get; set; }
     
         public virtual OrganiztionRole OrganiztionRole { get; set; }
-        public virtual User User { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<Right> Rights { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
+        public virtual User User { get; set; }
     }
 }

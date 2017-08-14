@@ -30,11 +30,11 @@ namespace AccessManagementService.Model
     
         public DbSet<Entity> Entities { get; set; }
         public DbSet<Right> Rights { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<OrganiztionRole> OrganiztionRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<User> Users { get; set; }
     
         public virtual int DoLogin(Nullable<int> userId, string iPLocation, string sessionId)
         {
@@ -345,6 +345,144 @@ namespace AccessManagementService.Model
                 new ObjectParameter("seeting", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertDepartment", departmentNameParameter, phonesParameter, faxesParameter, adressParameter, emailAdressParameter, deparetmentChartXMLParameter, logoPathParameter, isNeerdToConfirmParameter, isNeedConfirmToChangePasswordParameter, isVisibleParameter, seetingParameter);
+        }
+    
+        public virtual int sp_signup_insert(string firstName, string lastName, string userName, string password, string newPassword, Nullable<bool> isActive, Nullable<bool> isOnline, Nullable<bool> isConfirm, Nullable<System.DateTime> lastLoginTime, Nullable<bool> gender, Nullable<bool> marriedStatus, Nullable<System.DateTime> birthDate, Nullable<short> countryNo, Nullable<byte> languageNo, string address, string e_Mail, string photoPath, Nullable<System.DateTime> creationDate, Nullable<System.DateTime> editionDate, Nullable<System.DateTime> lastRefreshTime, Nullable<System.DateTime> lastChangePassDate, string nativeID, string personnelID, string activeSessionID, string systemProfile, string iPLocation, Nullable<int> departmentID, string phone, string mobile)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var newPasswordParameter = newPassword != null ?
+                new ObjectParameter("NewPassword", newPassword) :
+                new ObjectParameter("NewPassword", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            var isOnlineParameter = isOnline.HasValue ?
+                new ObjectParameter("IsOnline", isOnline) :
+                new ObjectParameter("IsOnline", typeof(bool));
+    
+            var isConfirmParameter = isConfirm.HasValue ?
+                new ObjectParameter("IsConfirm", isConfirm) :
+                new ObjectParameter("IsConfirm", typeof(bool));
+    
+            var lastLoginTimeParameter = lastLoginTime.HasValue ?
+                new ObjectParameter("LastLoginTime", lastLoginTime) :
+                new ObjectParameter("LastLoginTime", typeof(System.DateTime));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(bool));
+    
+            var marriedStatusParameter = marriedStatus.HasValue ?
+                new ObjectParameter("MarriedStatus", marriedStatus) :
+                new ObjectParameter("MarriedStatus", typeof(bool));
+    
+            var birthDateParameter = birthDate.HasValue ?
+                new ObjectParameter("BirthDate", birthDate) :
+                new ObjectParameter("BirthDate", typeof(System.DateTime));
+    
+            var countryNoParameter = countryNo.HasValue ?
+                new ObjectParameter("CountryNo", countryNo) :
+                new ObjectParameter("CountryNo", typeof(short));
+    
+            var languageNoParameter = languageNo.HasValue ?
+                new ObjectParameter("LanguageNo", languageNo) :
+                new ObjectParameter("LanguageNo", typeof(byte));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var e_MailParameter = e_Mail != null ?
+                new ObjectParameter("E_Mail", e_Mail) :
+                new ObjectParameter("E_Mail", typeof(string));
+    
+            var photoPathParameter = photoPath != null ?
+                new ObjectParameter("PhotoPath", photoPath) :
+                new ObjectParameter("PhotoPath", typeof(string));
+    
+            var creationDateParameter = creationDate.HasValue ?
+                new ObjectParameter("CreationDate", creationDate) :
+                new ObjectParameter("CreationDate", typeof(System.DateTime));
+    
+            var editionDateParameter = editionDate.HasValue ?
+                new ObjectParameter("EditionDate", editionDate) :
+                new ObjectParameter("EditionDate", typeof(System.DateTime));
+    
+            var lastRefreshTimeParameter = lastRefreshTime.HasValue ?
+                new ObjectParameter("LastRefreshTime", lastRefreshTime) :
+                new ObjectParameter("LastRefreshTime", typeof(System.DateTime));
+    
+            var lastChangePassDateParameter = lastChangePassDate.HasValue ?
+                new ObjectParameter("LastChangePassDate", lastChangePassDate) :
+                new ObjectParameter("LastChangePassDate", typeof(System.DateTime));
+    
+            var nativeIDParameter = nativeID != null ?
+                new ObjectParameter("NativeID", nativeID) :
+                new ObjectParameter("NativeID", typeof(string));
+    
+            var personnelIDParameter = personnelID != null ?
+                new ObjectParameter("PersonnelID", personnelID) :
+                new ObjectParameter("PersonnelID", typeof(string));
+    
+            var activeSessionIDParameter = activeSessionID != null ?
+                new ObjectParameter("ActiveSessionID", activeSessionID) :
+                new ObjectParameter("ActiveSessionID", typeof(string));
+    
+            var systemProfileParameter = systemProfile != null ?
+                new ObjectParameter("SystemProfile", systemProfile) :
+                new ObjectParameter("SystemProfile", typeof(string));
+    
+            var iPLocationParameter = iPLocation != null ?
+                new ObjectParameter("IPLocation", iPLocation) :
+                new ObjectParameter("IPLocation", typeof(string));
+    
+            var departmentIDParameter = departmentID.HasValue ?
+                new ObjectParameter("DepartmentID", departmentID) :
+                new ObjectParameter("DepartmentID", typeof(int));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("Phone", phone) :
+                new ObjectParameter("Phone", typeof(string));
+    
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("Mobile", mobile) :
+                new ObjectParameter("Mobile", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter);
+        }
+    
+        public virtual int sp_active_User(Nullable<bool> isConfirm, Nullable<bool> isActive, Nullable<int> iD)
+        {
+            var isConfirmParameter = isConfirm.HasValue ?
+                new ObjectParameter("isConfirm", isConfirm) :
+                new ObjectParameter("isConfirm", typeof(bool));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isConfirmParameter, isActiveParameter, iDParameter);
         }
     }
 }

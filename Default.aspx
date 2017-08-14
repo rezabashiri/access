@@ -5,6 +5,7 @@
 <%@ Register Src="~/Controls/ReciverPosition.ascx" TagPrefix="uc1" TagName="ReciverPosition" %>
 <%@ Register Src="~/Controls/LoginControl.ascx" TagPrefix="uc1" TagName="LoginControl" %>
 <%@ Register Src="~/Controls/UscControl.ascx" TagPrefix="uc1" TagName="UscControl" %>
+<%@ Register Src="~/Controls/UscSignUp.ascx" TagPrefix="uc1" TagName="UscSignUp" %>
 
 
 <%--<%@ Register Src="~/Controls/UscOrganization.ascx" TagPrefix="uc1" TagName="UscOrganization" %>--%>
@@ -27,8 +28,9 @@
         
         <%--<uc1:UscControl runat="server" id="UscControl" />--%>
         <%--<uc1:UscOrganization runat="server" ID="UscOrganization" />--%>
-        <uc1:LoginControl runat="server" ID="LoginControl" />
-        <asp:HyperLink ID="hpr" runat="server" >fgsdgsdfg</asp:HyperLink>
+        <%--<uc1:LoginControl runat="server" ID="LoginControl" />--%>
+        <uc1:UscSignUp runat="server" ID="signupControl" />
+        <asp:HyperLink ID="hpr" runat="server" >test</asp:HyperLink>
     </div>
     </form>
 </body>

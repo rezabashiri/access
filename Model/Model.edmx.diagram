@@ -7,7 +7,6 @@
       <Diagram DiagramId="406058b5e2a54bc1896a3fa369fc798a" Name="Diagram1" ZoomLevel="79">
         <EntityTypeShape EntityType="MPOModel.Entity" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MPOModel.Right" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MPOModel.User" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="MPOModel.FK_Right_Entity" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MPOModel.Group" Width="1.5" PointX="9.7638669916260366" PointY="19.306030416538022" />
         <AssociationConnector Association="MPOModel.Groups_Rights" />
@@ -15,12 +14,13 @@
         <AssociationConnector Association="MPOModel.FK_OrganiztionRole_OrganiztionRole" />
         <EntityTypeShape EntityType="MPOModel.Role" Width="1.5" PointX="12" PointY="11" />
         <AssociationConnector Association="MPOModel.FK_Role_OrganiztionRole" />
-        <AssociationConnector Association="MPOModel.FK_Role_User" />
         <AssociationConnector Association="MPOModel.Groups_Roles" />
         <AssociationConnector Association="MPOModel.Roles_Rights" />
         <EntityTypeShape EntityType="MPOModel.Department" Width="1.5" PointX="0.75" PointY="7.875" />
-        <AssociationConnector Association="MPOModel.FK_User_Department" />
         <AssociationConnector Association="MPOModel.Departments_Roles" />
+        <EntityTypeShape EntityType="MPOModel.User" Width="1.5" PointX="3" PointY="6.125" />
+        <AssociationConnector Association="MPOModel.FK_User_Department" />
+        <AssociationConnector Association="MPOModel.FK_Role_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

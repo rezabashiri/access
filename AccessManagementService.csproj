@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,8 +101,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\component\Utility\bin\Release\tkvUtility.dll</HintPath>
     </Reference>
-    <Reference Include="WebUtilityv2">
-      <HintPath>..\..\..\publish\WebUtilityv2\bin\WebUtilityv2.dll</HintPath>
+    <Reference Include="WebUtilityv2, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\WebUtilityv2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +112,8 @@
     <Content Include="Controls\UscControl.ascx" />
     <Content Include="Controls\UscMenuLink.ascx" />
     <Content Include="Controls\UscRoleSelect.ascx" />
+    <Content Include="Controls\UscSignUp.ascx" />
+    <Content Include="Controls\UscVerification.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart.ascx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
@@ -124,6 +128,7 @@
     <Compile Include="Classes\DepartmentPartial.cs" />
     <Compile Include="Classes\Login.cs" />
     <Compile Include="Classes\EntityPartial.cs" />
+    <Compile Include="Classes\signUp.cs" />
     <Compile Include="Controls\AccessCheckedHyperLink.cs" />
     <Compile Include="Classes\Password.cs" />
     <Compile Include="Classes\Settings.cs" />
@@ -140,6 +145,20 @@
     </Compile>
     <Compile Include="Controls\UscMenuLink.ascx.designer.cs">
       <DependentUpon>UscMenuLink.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UscSignUp.ascx.cs">
+      <DependentUpon>UscSignUp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\UscSignUp.ascx.designer.cs">
+      <DependentUpon>UscSignUp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UscVerification.ascx.cs">
+      <DependentUpon>UscVerification.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\UscVerification.ascx.designer.cs">
+      <DependentUpon>UscVerification.ascx</DependentUpon>
     </Compile>
     <Compile Include="DynamicDataAccess\Attributes.cs" />
     <Compile Include="Enums\Enums.cs" />
