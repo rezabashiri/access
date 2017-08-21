@@ -96,7 +96,7 @@
             font-weight: 400;
             font-size: 13px;
             color: #333;
-            text-align: left;
+            text-align: right;
             white-space: normal;
         }
 
@@ -957,50 +957,34 @@
     }
 </style>
 
+ 
+<div>
+    <header>
+        <%--دریافت کد احراز هویت تلفن همراه--%>
+    </header>
+</div>
+
+<section>
+
+ 	<div class="clock" style="margin:2px 0px 21px 134px;"></div>
+	<div class="message" style="direction:rtl;text-align:right;"></div>
+</section>
 
 
-
-<asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePnl1" runat="server">
-    <ProgressTemplate>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-8 text-center" style="margin-bottom: 15px">
-
-            <asp:Image ID="imgLoad" runat="server" />
-        </div>
-    </ProgressTemplate>
-</asp:UpdateProgress>
-
-<asp:UpdatePanel runat="server" ID="UpdatePnl1" UpdateMode="Conditional" ValidateRequestMode="Enabled">
+<asp:UpdatePanel runat="server" ID="UpdatePnl1" UpdateMode="Conditional">
     <ContentTemplate>
 
 
-        <div style="text-align: right; margin-bottom: 15px" class="row">
-            <div class="col-sm-12">
-                <asp:Label CssClass="  form-control" Visible="false" ID="lblMessage" runat="server"></asp:Label>
-            </div>
-
-        </div>
         <div class="smart-form client-form">
-            <header>
-                دریافت کد احراز هویت تلفن همراه
-            </header>
+
 
             <fieldset>
-
-                <section>
-                    <label class="label">تایمر</label>
-                    <div class="flipTimer">
-                        <div class="hours"></div>
-                        <div class="minutes"></div>
-                        <div class="seconds"></div>
-                    </div>
-                </section>
 
                 <section>
                     <label class="label">کد احراز هویت</label>
                     <label class="input">
                         <i class="icon-append fa fa-mobile"></i>
-                        <asp:TextBox ID="txtverificationCode" CssClass="validate[required] form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtverificationCode" CssClass="validate[required,minSize[11],maxSize[11]] form-control" runat="server"></asp:TextBox>
                         <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا کد احراز هویت خود را وارد نمائید</b></label>
                 </section>
 
@@ -1008,11 +992,7 @@
             </fieldset>
             <footer>
 
-                <uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
-                <uc1:MoroorgaranButton ID="btnOK" runat="server" ValidateionType="validate" Width="45%" OnClick="btnOK_Click" CssClass="btn btn-lg btn-block mt-15" Text="تایید هویت" />
-
-
-                <asp:Button ID="btnCancel" Width="45%" OnClick="btnCancel_Click" CssClass="btn btn-danger" ValidateRequestMode="Enabled" CausesValidation="true" ValidationGroup="aut" runat="server" Text="انصراف" />
+                <uc1:MoroorgaranButton ID="btnOK" runat="server" ValidateionType="none" Width="100%" OnClick="btnOK_Click" CssClass="btn btn-lg btn-primary mt-15" Text="تایید هویت" />
 
                 <div class="col-sm-12 text-center">
 
@@ -1035,16 +1015,34 @@
            -->
 
     </ContentTemplate>
+
 </asp:UpdatePanel>
 
-<script>
+ <script type="text/javascript">
 
-    $(".flipTimer").flipTimer({
-        direction: "down",
-        date: "August  20, 2017 09:00:00",
-        callback: function () {
-            alert('end');
-        }
-    });
+     //window.onload = timer();
 
-    </script>
+     function timer()
+     {
+         var clock;
+
+         //$(document).ready(function () {
+         var clock;
+
+         clock = $('.clock').FlipClock({
+             clockFace: 'MinuteCounter',
+             autoStart: false,
+             callbacks: {
+                 stop: function () {
+                     $('.message').text('زمان شما به پایان رسید. لطفا مجددا تلاش نمائید.')
+                     $('#<%= btnOK.ClientID %>').prop("disabled", true);
+                 }
+             }
+         });
+
+         clock.setTime(180);
+         clock.setCountdown(true);
+         clock.start();
+     }
+    //}); 
+</script>

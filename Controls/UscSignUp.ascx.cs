@@ -14,7 +14,6 @@ namespace AccessManagementService.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
 
@@ -40,25 +39,37 @@ namespace AccessManagementService.Controls
             }
 
             string username = txtUsername.Text;
+            string password = txtPassword.Text;
+            string hashpass = hash.Encrypt(password);
 
-            int result = _user.select(username);
+            string email = txtEmail.Text.Trim();
 
-            if (result == -2)// user is not exist & can insert into user table
+            var result = _user.UserSignUp(username, hashpass, email);
+
+            if (result != null)
             {
-                string password = txtPassword.Text;
-                string hashpass = hash.Encrypt(password);
+                if (result.Active == false)
+                {
+                    //go to oher page that show verificatino code
 
-                string email = txtEmail.Text.Trim();
+                    Session["verificationCode"] = _user.GenerateRandomNo();
 
-                _user.user_insert(username, hashpass, email);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('hide');", true);
 
-                //go to oher page that show verificatino code
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
 
-            }
 
-            if (result == -1) // user is exist but is not confirm verification code
-            {
-                //go to oher page that show verificatino code
+
+
+
+                    //System.Web.UI.ScriptManager.RegisterStartupScript(btnSignUp,this.GetType(), "modal", "alert('hide');", true);
+                }
+                else
+                {
+                    //go to login page
+                }
             }
         }
 

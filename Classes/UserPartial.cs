@@ -146,6 +146,24 @@ namespace AccessManagementService.Model
                 return query.Where(x => x.ID == userid).FirstOrDefault() ?? new User { ID=-1};
             }
         }
+        public User GetUserByUserName(string UserName, string[] includes)
+        {
+
+            using (var db = new AccessEntities())
+            {
+                var query = db.Users.AsQueryable();
+
+                if (includes != null)
+                {
+                    foreach (string inc in includes)
+                    {
+                        query = query.Include(inc);
+                    }
+                }
+                
+                return query.Where(x => x.UserName == UserName).FirstOrDefault() ?? new User { ID = -1 };
+            }
+        }
         public List<User> GetAllUsers(string [] includes)
         {
             using (var db = new AccessEntities())

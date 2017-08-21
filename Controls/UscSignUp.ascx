@@ -1,5 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UscSignUp.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.SignUp" Inherits="AccessManagementService.Controls.UscSignUp" %>
-<%@ Register TagPrefix="uc1" Assembly ="WebUtilityv2" Namespace="WebUtility.Controls"  %>
+﻿<%@ Control Language="C#" ValidateRequestMode="Enabled" AutoEventWireup="true" CodeBehind="UscSignUp.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.SignUp" Inherits="AccessManagementService.Controls.UscSignUp" %>
+<%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
+<%@ Register Src="~/Controls/UscVerification.ascx" TagPrefix="uc1" TagName="UscVerification" %>
 <style type="text/css">
     .captcha-image {
         float: left;
@@ -96,7 +97,7 @@
             font-weight: 400;
             font-size: 13px;
             color: #333;
-            text-align: left;
+            text-align: right !important;
             white-space: normal;
         }
 
@@ -261,6 +262,7 @@
                 border-width: 1px;
                 border-style: solid;
                 background: #FFF;
+                float: right;
             }
 
             .smart-form .radio i {
@@ -955,94 +957,84 @@
         height: 100%;
         background: rgba(0, 0, 0, .7);
     }
+
+    .right {
+        float: right;
+    }
 </style>
-<asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePnl1" runat="server">
-    <ProgressTemplate>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-8 text-center" style="margin-bottom: 15px">
 
-            <asp:Image ID="imgLoad" runat="server" />
-        </div>
-    </ProgressTemplate>
-</asp:UpdateProgress>
 
-<asp:UpdatePanel runat="server" ID="UpdatePnl1" UpdateMode="Conditional" ValidateRequestMode="Enabled">
+<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
+<asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Always" ValidateRequestMode="Enabled">
     <ContentTemplate>
 
+        <asp:Panel ID="pnlsignUp" Visible="true" runat="server">
 
-        <div style="text-align: right; margin-bottom: 15px" class="row">
-            <div class="col-sm-12">
-                <asp:Label CssClass="  form-control" Visible="false" ID="lblMessage" runat="server"></asp:Label>
+            <div style="text-align: right; margin-bottom: 15px" class="row">
+                <div class="col-sm-12">
+                    <asp:Label CssClass="label label-danger form-control" Visible="false" ID="lblMessage" runat="server"></asp:Label>
+                </div>
+
             </div>
+            <div class="smart-form client-form">
+                <%--<header>--%>
+                <%--ثبت نام در سامانه--%>
+                <%--</header>--%>
 
-        </div>
-        <div class="smart-form client-form">
-            <header>
-                ثبت نام در سامانه
-            </header>
-
-            <fieldset>
-
-                     <section>
-                    <label class="label">تلفن همراه</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-mobile"></i>
-                        <asp:TextBox ID="txtUsername" CssClass="validate[required,custom[phone],minSize[11],maxSize[11]] form-control" runat="server"></asp:TextBox>
-                        <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا تلفن همراه خود را وارد نمائید</b></label>
-                </section>
-
-                <section>
-                    <label class="label">رمز عبور</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-lock"></i>
-                        <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="validate[required] form-control" runat="server"></asp:TextBox>
-                        <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>لطفا رمز عبور خود را وارد نمائید</b>
-                    </label>
-
-                    <label class="label">تکرار رمز عبور</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-lock"></i>
-                        <asp:TextBox ID="txtRePassword" TextMode="Password" CssClass="validate[required] form-control" runat="server"></asp:TextBox>
-                        <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>لطفا رمز عبور خود را تکرار نمائید</b>
-                    </label>
-                </section>
+                <fieldset>
 
                     <section>
-                    <label class="label">ایمیل</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-user"></i>
-                        <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
-                        <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا نام کاربری یا ایمیل خود را وارد نمائید</b></label>
-                </section>
+                        <label class="label">تلفن همراه</label>
+                        <label class="input">
+                            <i class="icon-append fa fa-mobile"></i>
+                            <asp:TextBox ID="txtUsername" CssClass="validate[required,custom[phone],minSize[11],maxSize[11]] form-control" runat="server"></asp:TextBox>
+                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا تلفن همراه خود را وارد نمائید</b></label>
+                    </section>
 
-                <section>
-                    <telerik:radcaptcha ID="captcha" runat="server" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
-                        <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
-                        <TextBoxLabelDecoration />
-                    </telerik:RadCaptcha>
-                </section>
-                <section>
-                    <label class="checkbox">
-                        <asp:CheckBox ID="chkRemember" runat="server" />
-                        <i></i>مرا به یاد آور</label>
-                </section>
-            </fieldset>
-            <footer>
+                    <section>
+                        <label class="label">رمز عبور</label>
+                        <label class="input">
+                            <i class="icon-append fa fa-lock"></i>
+                            <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="validate[required] form-control" runat="server"></asp:TextBox>
+                            <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>لطفا رمز عبور خود را وارد نمائید</b>
+                        </label>
+                    </section>
+                    <section>
+                        <label class="label">تکرار رمز عبور</label>
+                        <label class="input">
+                            <i class="icon-append fa fa-lock"></i>
+                            <asp:TextBox ID="txtRePassword" TextMode="Password" CssClass="validate[required] form-control" runat="server"></asp:TextBox>
+                            <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i>لطفا رمز عبور خود را تکرار نمائید</b>
+                        </label>
+                    </section>
 
-                 <uc1:loadmoroorgarancontrols ID="load" runat="server" LoadValidationScripts="true"  LoadValidationStyle="true"></uc1:loadmoroorgarancontrols>
-                <uc1:moroorgaranbutton ID="bt" runat="server" ValidateionType="validate" Width="45%" OnClick="btnSignUp_Click" CssClass="btn  btn-lg btn-block mt-15" Text="ثبت نام" />
+                    <section>
+                        <label class="label">ایمیل</label>
+                        <label class="input">
+                            <i class="icon-append fa fa-user"></i>
+                            <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا نام کاربری یا ایمیل خود را وارد نمائید</b></label>
+                    </section>
 
-                
-                <asp:Button ID="btnCancel" Width="45%" OnClick="btnCancel_Click" CssClass="btn btn-danger" ValidateRequestMode="Enabled" CausesValidation="true" ValidationGroup="aut" runat="server" Text="انصراف" />
+                    <section>
+                        <telerik:RadCaptcha CssClass="right" ID="captcha" runat="server" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
+                            <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
+                            <TextBoxLabelDecoration />
+                        </telerik:RadCaptcha>
+                    </section>
+                </fieldset>
+                <footer>
 
-                 <div class="col-sm-12 text-center">
+                    <uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="validate" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />
 
-                   <!--  <a target="_blank" name="سیستم های اطلاعاتی | تلفن های هوشمند | وب سایت | نرم افزارهای اندروید" href="http://moroorgaran.com">شرکت مرورگران نوآوری توسعه  </a>
+                    <div class="col-sm-12 text-center">
+
+                        <!--  <a target="_blank" name="سیستم های اطلاعاتی | تلفن های هوشمند | وب سایت | نرم افزارهای اندروید" href="http://moroorgaran.com">شرکت مرورگران نوآوری توسعه  </a>
                      -->
-                </div> 
-            </footer>
-        </div>
-        <!-- <h5 class="text-center">ما را دنبال نمایید</h5>
+                    </div>
+                </footer>
+            </div>
+            <!-- <h5 class="text-center">ما را دنبال نمایید</h5>
 
         <ul class="list-inline text-center">
             <li>
@@ -1054,6 +1046,42 @@
             </li>
         </ul>
            -->
+        </asp:Panel>
 
+
+
+        <!-- /.modal -->
     </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="btnSignUp" />
+    </Triggers>
 </asp:UpdatePanel>
+ 
+
+
+ 
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title" style="text-align: right;">
+                    <span class="label label-primary">دریافت کد احراز هویت تلفن همراه</span></h2>
+            </div>
+            <div class="modal-body">
+                <asp:Panel ID="pnlValidation" runat="server">
+                    <uc1:UscVerification runat="server" ID="UscVerification" />
+                    
+                </asp:Panel>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

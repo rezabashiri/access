@@ -30,12 +30,12 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
     <UseFixedNames>true</UseFixedNames>
     <WDPMergeOption>CreateSeparateAssembly</WDPMergeOption>
     <UseMerge>false</UseMerge>
-    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
     <SingleAssemblyName>
     </SingleAssemblyName>
     <ContentAssemblyName>
@@ -43,6 +43,8 @@
     <DeleteAppCodeCompiledFiles>false</DeleteAppCodeCompiledFiles>
     <PublishDatabases>false</PublishDatabases>
     <EnableUpdateable>false</EnableUpdateable>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,13 +56,16 @@
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
     <UseFixedNames>true</UseFixedNames>
     <WDPMergeOption>CreateSeparateAssembly</WDPMergeOption>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\viral\source\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\viral\source\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.DynamicData.EFProvider">
       <HintPath>..\packages\Microsoft.AspNet.DynamicData.EFProvider.6.0.0\lib\net40\Microsoft.AspNet.DynamicData.EFProvider.dll</HintPath>
@@ -72,7 +77,6 @@
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -101,12 +105,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\component\Utility\bin\Release\tkvUtility.dll</HintPath>
     </Reference>
-    <Reference Include="WebUtilityv2, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\WebUtilityv2.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap.min.js" />
     <Content Include="Controls\LoginControl.ascx" />
     <Content Include="Controls\ReciverPosition.ascx" />
     <Content Include="Controls\UscControl.ascx" />
@@ -114,14 +115,16 @@
     <Content Include="Controls\UscRoleSelect.ascx" />
     <Content Include="Controls\UscSignUp.ascx" />
     <Content Include="Controls\UscVerification.ascx" />
-    <Content Include="Resources\calendar.js" />
-    <Content Include="Resources\flipTimer.css" />
+    <EmbeddedResource Include="Resources\flipclock.css" />
+    <EmbeddedResource Include="Resources\flipclock.js" />
     <Content Include="Default.aspx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart.ascx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
     <EmbeddedResource Include="Resources\loadingAnimation.gif" />
-    <Content Include="js\jquery-3.2.1.min.js" />
-    <Content Include="jqueryflipTimer.js" />
+    <EmbeddedResource Include="Resources\jquery-3.2.1.min.js" />
+    <Content Include="Resources\bootstrap.min.js" />
+    <Content Include="Resources\jquery-1.10.2.min.js" />
+    <Content Include="Resources\jquery-1.11.0.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -255,13 +258,15 @@
     <Compile Include="Model\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sp_signup_insert_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
     <EntityDeploy Include="Model\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -279,6 +284,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\acc.pubxml" />
     <None Include="Properties\PublishProfiles\AccessManagement.pubxml" />
     <None Include="Web.Debug.config">
@@ -292,11 +298,55 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CSS\" />
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WebUtility_v2\WebUtility.csproj">
+      <Project>{d78f6bdc-6d1c-4511-add2-44b116d77cd8}</Project>
+      <Name>WebUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -319,7 +369,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

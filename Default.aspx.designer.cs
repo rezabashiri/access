@@ -31,21 +31,12 @@ namespace AccessManagementService {
         protected global::Telerik.Web.UI.RadScriptManager RadScriptManager1;
         
         /// <summary>
-        /// UscSignUp1 control.
+        /// UscSignUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AccessManagementService.Controls.UscVerification UscSignUp1;
-        
-        /// <summary>
-        /// hpr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpr;
+        protected global::AccessManagementService.Controls.UscSignUp UscSignUp;
     }
 }

@@ -13,15 +13,6 @@ namespace AccessManagementService.Controls {
     public partial class UscVerification {
         
         /// <summary>
-        /// UpdateProgress1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-        
-        /// <summary>
         /// UpdatePnl1 control.
         /// </summary>
         /// <remarks>
@@ -29,15 +20,6 @@ namespace AccessManagementService.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePnl1;
-        
-        /// <summary>
-        /// lblMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
         /// txtverificationCode control.
@@ -49,15 +31,6 @@ namespace AccessManagementService.Controls {
         protected global::System.Web.UI.WebControls.TextBox txtverificationCode;
         
         /// <summary>
-        /// load control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebUtility.Controls.LoadMoroorgaranControls load;
-        
-        /// <summary>
         /// btnOK control.
         /// </summary>
         /// <remarks>
@@ -65,14 +38,5 @@ namespace AccessManagementService.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WebUtility.Controls.MoroorgaranButton btnOK;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

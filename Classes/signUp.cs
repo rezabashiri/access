@@ -10,16 +10,23 @@ namespace AccessManagementService.Classes
     {
         AccessEntities DB = new AccessEntities();
 
-        public void user_insert(string userName, string pass, string email)
+        public sp_signup_insert_Result UserSignUp(User user)
         {
-            bool isconfirm = false; //when this true that 
-            bool isActive = false;
-            bool isOnline = false;
+            var res = DB.sp_signup_insert(user.FirstName, user.LastName, user.UserName, user.Password, user.NewPassword, user.IsActive, user.IsOnline, user.IsConfirm, user.LastLoginTime, user.Gender, user.MarriedStatus, user.BirthDate, user.CountryNo, user.LanguageNo, user.Address, user.E_Mail, user.PhotoPath, user.CreationDate, user.EditionDate, user.LastRefreshTime, user.LastChangePassDate, user.NativeID, user.PersonnelID, user.ActiveSessionID, user.SystemProfile, user.IPLocation, user.DepartmentID, user.Phone, user.Mobile).FirstOrDefault();
 
-            DB.sp_signup_insert(null, null, userName, pass, null, isActive, isOnline, isconfirm, null, null, null, null, null, null, null, email, null, null, null, null, null, null, null, null, null, null, null, null, null);
-
+            return res;
         }
+        public sp_signup_insert_Result UserSignUp(string username,string pass,string email)
+        {
+            User u = new User();
+            u.UserName = username;
+            u.Password = pass;
+            u.E_Mail = email;
+            u.IsActive = false;
+            u.IsOnline = false;
 
+            return UserSignUp(u);
+        }
         public int select(string username)
         {
             int result = 0;
@@ -59,13 +66,15 @@ namespace AccessManagementService.Classes
 
         public void activeUsers(string userName)
         {
-            int ID = this.select(userName);
-
-            if (ID > 0)// can update
-            {
-                DB.sp_active_User(true, ID);
-            }
+            DB.SpActiveUserByUserName(true, userName);
         }
 
+        public int GenerateRandomNo()
+        {
+            int _min = 1000;
+            int _max = 9999;
+            Random _rdm = new Random();
+            return _rdm.Next(_min, _max);
+        }
     }
 }
