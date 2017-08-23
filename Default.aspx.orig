@@ -18,7 +18,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+<<<<<<< HEAD
     <script src="js/jquery-3.2.1.min.js"></script>
+   
+ 
+=======
 
     <%--    <link rel="stylesheet" href="Resources/flipclock.css" />
 <script src="Resources/flipclock.js"></script>--%>
@@ -31,6 +35,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+>>>>>>> 5129c5c858e1b7fae187acbd0694fbc498cf5172
 </head>
 <body>
     <form id="form1" runat="server">
@@ -40,7 +45,7 @@
 
             <%--<uc1:UscControl runat="server" id="UscControl" />--%>
             <%--<uc1:UscOrganization runat="server" ID="UscOrganization" />--%>
-            <uc1:LoginControl runat="server" ID="LoginControl" /> 
+            <%--<uc1:LoginControl runat="server" ID="LoginControl" />--%>
 
             <%--<uc1:UscSignUp runat="server" ID="signupControl" />--%>
             <%--<uc1:UscVerification runat="server" ID="UscSignUp1" />--%>

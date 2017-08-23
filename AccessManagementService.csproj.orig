@@ -30,7 +30,7 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
     <PrecompileBeforePublish>true</PrecompileBeforePublish>
     <UseFixedNames>true</UseFixedNames>
     <WDPMergeOption>CreateSeparateAssembly</WDPMergeOption>
@@ -109,32 +109,37 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\component\Utility\bin\Release\tkvUtility.dll</HintPath>
     </Reference>
-    <Reference Include="WebUtilityv2, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\WebUtilityv2.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap.min.js" />
     <Content Include="Controls\LoginControl.ascx" />
     <Content Include="Controls\ReciverPosition.ascx" />
-    <Content Include="Controls\test.ascx" />
     <Content Include="Controls\UscControl.ascx" />
     <Content Include="Controls\UscMenuLink.ascx" />
     <Content Include="Controls\UscRoleSelect.ascx" />
     <Content Include="Controls\UscSignUp.ascx" />
     <Content Include="Controls\UscVerification.ascx" />
+<<<<<<< HEAD
+    <EmbeddedResource Include="Resources\calendar.js" />
+    <EmbeddedResource Include="Resources\flipTimer.css" />
+=======
     <EmbeddedResource Include="Resources\flipclock.css" />
     <EmbeddedResource Include="Resources\flipclock.js" />
-    <EmbeddedResource Include="Resources\customStylesheet.css" />
+    <Content Include="CSS\customStylesheet.css" />
+>>>>>>> 5129c5c858e1b7fae187acbd0694fbc498cf5172
     <Content Include="Default.aspx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart.ascx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
     <EmbeddedResource Include="Resources\loadingAnimation.gif" />
+<<<<<<< HEAD
+    <Content Include="js\jquery-3.2.1.min.js" />
+    <EmbeddedResource Include="Resources\jqueryflipTimer.js" />
+=======
     <EmbeddedResource Include="Resources\jquery-3.2.1.min.js" />
     <Content Include="Resources\bootstrap.min.js" />
     <Content Include="Resources\jquery-1.10.2.min.js" />
     <Content Include="Resources\jquery-1.11.0.js" />
+>>>>>>> 5129c5c858e1b7fae187acbd0694fbc498cf5172
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -146,13 +151,6 @@
     <Compile Include="Classes\Login.cs" />
     <Compile Include="Classes\EntityPartial.cs" />
     <Compile Include="Classes\signUp.cs" />
-    <Compile Include="Controls\test.ascx.cs">
-      <DependentUpon>test.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\test.ascx.designer.cs">
-      <DependentUpon>test.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\SMS.cs" />
     <Compile Include="Controls\AccessCheckedHyperLink.cs" />
     <Compile Include="Classes\Password.cs" />
@@ -304,7 +302,6 @@
     </Content>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\acc.pubxml" />
-    <None Include="Properties\PublishProfiles\access.pubxml" />
     <None Include="Properties\PublishProfiles\AccessManagement.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -320,7 +317,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\" />
+    <ProjectReference Include="..\..\WebUtility_v2\WebUtility.csproj">
+      <Project>{d78f6bdc-6d1c-4511-add2-44b116d77cd8}</Project>
+      <Name>WebUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

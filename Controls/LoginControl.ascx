@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginControl.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.Login" Inherits="AccessManagementService.Controls.LoginControl" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
-<link href="../CSS/customStylesheet.css" rel="stylesheet" />
+<link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(LoginControl),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
 <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePnl1" runat="server">
     <ProgressTemplate>
@@ -50,7 +50,7 @@
                     </div>
                 </section>
                 <section>
-                    <telerik:RadCaptcha ID="captcha" runat="server" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
+                    <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
                         <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
                         <TextBoxLabelDecoration />
                     </telerik:RadCaptcha>
