@@ -408,8 +408,8 @@
           <Parameter Name="Mobile" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SpActiveUserByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="isActive" Type="bit" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="MPOModelStoreContainer">
           <EntitySet Name="Department" EntityType="Self.Department" Schema="asc" store:Type="Tables" />
@@ -622,8 +622,8 @@
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SpActiveUserByUserName">
+          <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="isActive" Mode="In" Type="Boolean" />
-            <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Users" EntityType="MPOModel.User" />
           <AssociationSet Name="FK_User_Department" Association="MPOModel.FK_User_Department">

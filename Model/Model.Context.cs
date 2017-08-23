@@ -481,17 +481,17 @@ namespace AccessManagementService.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isActiveParameter, iDParameter);
         }
     
-        public virtual int SpActiveUserByUserName(Nullable<bool> isActive, string userName)
+        public virtual int SpActiveUserByUserName(string userName, Nullable<bool> isActive)
         {
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
             var userNameParameter = userName != null ?
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpActiveUserByUserName", isActiveParameter, userNameParameter);
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpActiveUserByUserName", userNameParameter, isActiveParameter);
         }
     }
 }

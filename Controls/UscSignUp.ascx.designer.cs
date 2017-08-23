@@ -112,12 +112,12 @@ namespace AccessManagementService.Controls {
         protected global::System.Web.UI.WebControls.Panel pnlValidation;
         
         /// <summary>
-        /// UscVerification control.
+        /// uscVerification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AccessManagementService.Controls.UscVerification UscVerification;
+        protected global::AccessManagementService.Controls.UscVerification uscVerification;
     }
 }

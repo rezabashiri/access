@@ -89,22 +89,6 @@
 
         </script>
 
-    <%--    <script type="text/javascript">
-            $(document).ready(function () {
-                $('form1').validationEngine();
-            });
-
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-            if (prm != null) {
-                prm.add_initializeRequest(function (sender, args) {
-                    if (sender._postBackSettings.panelsToUpdate != null) {
-                        if (!$('form1').validationEngine('validate')) {
-                            args.set_cancel(true);
-                        }
-                    }
-                });
-            };
-        </script>--%>
 
     </form>
 

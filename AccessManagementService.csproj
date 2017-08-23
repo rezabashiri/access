@@ -67,6 +67,10 @@
       <HintPath>..\..\viral\source\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kavenegar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Kavenegar.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.DynamicData.EFProvider">
       <HintPath>..\packages\Microsoft.AspNet.DynamicData.EFProvider.6.0.0\lib\net40\Microsoft.AspNet.DynamicData.EFProvider.dll</HintPath>
     </Reference>
@@ -117,6 +121,7 @@
     <Content Include="Controls\UscVerification.ascx" />
     <EmbeddedResource Include="Resources\flipclock.css" />
     <EmbeddedResource Include="Resources\flipclock.js" />
+    <Content Include="CSS\customStylesheet.css" />
     <Content Include="Default.aspx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart.ascx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
@@ -136,6 +141,7 @@
     <Compile Include="Classes\Login.cs" />
     <Compile Include="Classes\EntityPartial.cs" />
     <Compile Include="Classes\signUp.cs" />
+    <Compile Include="Helpers\SMS.cs" />
     <Compile Include="Controls\AccessCheckedHyperLink.cs" />
     <Compile Include="Classes\Password.cs" />
     <Compile Include="Classes\Settings.cs" />

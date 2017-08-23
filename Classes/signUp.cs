@@ -16,7 +16,7 @@ namespace AccessManagementService.Classes
 
             return res;
         }
-        public sp_signup_insert_Result UserSignUp(string username,string pass,string email)
+        public sp_signup_insert_Result UserSignUp(string username, string pass, string email)
         {
             User u = new User();
             u.UserName = username;
@@ -27,46 +27,46 @@ namespace AccessManagementService.Classes
 
             return UserSignUp(u);
         }
-        public int select(string username)
-        {
-            int result = 0;
+        //public int select(string username)
+        //{
+        //    int result = 0;
 
-            try
-            {
-                //LINQ command for check username
-                var query = from u in DB.Users
-                            where u.UserName == username
-                            select u;
-                var user = query.ToList();
+        //    try
+        //    {
+        //        //LINQ command for check username
+        //        var query = from u in DB.Users
+        //                    where u.UserName == username
+        //                    select u;
+        //        var user = query.ToList();
 
-                if (user.Count == 0)
-                {
-                    result = -2; // this user is not  exist
-                    return result;
-                }
+        //        if (user.Count == 0)
+        //        {
+        //            result = -2; // this user is not  exist
+        //            return result;
+        //        }
 
-                if (user.Count == 1)
-                {
+        //        if (user.Count == 1)
+        //        {
 
-                    if (user[0].IsActive == false)
-                    {
-                        result = -1; // this user is exist but not confirm code yet
-                        return result;
-                    }
+        //            if (user[0].IsActive == false)
+        //            {
+        //                result = -1; // this user is exist but not confirm code yet
+        //                return result;
+        //            }
 
-                    //update is_active true
-                    result = user[0].ID;
-                }
-            }
-            catch
-            {
-            }
-            return result;
-        }
+        //            //update is_active true
+        //            result = user[0].ID;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //    }
+        //    return result;
+        //}
 
         public void activeUsers(string userName)
         {
-            DB.SpActiveUserByUserName(true, userName);
+            DB.SpActiveUserByUserName(userName, true);
         }
 
         public int GenerateRandomNo()

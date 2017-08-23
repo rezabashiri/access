@@ -31,4 +31,10 @@ namespace AccessManagementService.Access
         [Description("سرویس جستجو اسناد")]
         Search
     }
+    public enum UserActiveStatus
+    {
+        NotExists,
+        NotActive,
+        Active
+    }
 }

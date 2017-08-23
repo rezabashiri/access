@@ -8,14 +8,17 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 using tkv.Utility;
+using AccessManagementService.Access;
 namespace AccessManagementService.Model
 {
+   
     [MetadataType(typeof(MetaData))]
      
     [System.ComponentModel.DisplayName("کاربران")]
-    
+      
     public partial class User
     {
+     
         private class MetaData
         {
             public int ID { get; set; }
@@ -128,6 +131,11 @@ namespace AccessManagementService.Model
             set;
             get;
 
+        }
+        public UserActiveStatus UserActiveStatus
+        {
+            get;
+            set;
         }
         public User GetUserById(int userid,string [] includes)
         {
