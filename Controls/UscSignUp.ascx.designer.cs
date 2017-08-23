@@ -13,22 +13,31 @@ namespace AccessManagementService.Controls {
     public partial class UscSignUp {
         
         /// <summary>
-        /// UpdateProgress1 control.
+        /// load control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
+        protected global::WebUtility.Controls.LoadMoroorgaranControls load;
         
         /// <summary>
-        /// UpdatePnl1 control.
+        /// UpdatePnl_signUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePnl1;
+        protected global::System.Web.UI.UpdatePanel UpdatePnl_signUp;
+        
+        /// <summary>
+        /// pnlsignUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlsignUp;
         
         /// <summary>
         /// lblMessage control.
@@ -85,39 +94,30 @@ namespace AccessManagementService.Controls {
         protected global::Telerik.Web.UI.RadCaptcha captcha;
         
         /// <summary>
-        /// chkRemember control.
+        /// btnSignUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkRemember;
+        protected global::WebUtility.Controls.MoroorgaranButton btnSignUp;
         
         /// <summary>
-        /// load control.
+        /// pnlValidation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebUtility.Controls.LoadMoroorgaranControls load;
+        protected global::System.Web.UI.WebControls.Panel pnlValidation;
         
         /// <summary>
-        /// bt control.
+        /// uscVerification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebUtility.Controls.MoroorgaranButton bt;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::AccessManagementService.Controls.UscVerification uscVerification;
     }
 }

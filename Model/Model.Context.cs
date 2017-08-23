@@ -13,7 +13,7 @@ namespace AccessManagementService.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
       using System.Data.Entity.Core.Objects;
-    using System.Data.Objects.DataClasses;
+        using System.Data.Entity.Core.Objects.DataClasses;
     using System.Linq;
     
     public partial class AccessEntities : DbContext
@@ -347,7 +347,7 @@ namespace AccessManagementService.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertDepartment", departmentNameParameter, phonesParameter, faxesParameter, adressParameter, emailAdressParameter, deparetmentChartXMLParameter, logoPathParameter, isNeerdToConfirmParameter, isNeedConfirmToChangePasswordParameter, isVisibleParameter, seetingParameter);
         }
     
-        public virtual int sp_signup_insert(string firstName, string lastName, string userName, string password, string newPassword, Nullable<bool> isActive, Nullable<bool> isOnline, Nullable<bool> isConfirm, Nullable<System.DateTime> lastLoginTime, Nullable<bool> gender, Nullable<bool> marriedStatus, Nullable<System.DateTime> birthDate, Nullable<short> countryNo, Nullable<byte> languageNo, string address, string e_Mail, string photoPath, Nullable<System.DateTime> creationDate, Nullable<System.DateTime> editionDate, Nullable<System.DateTime> lastRefreshTime, Nullable<System.DateTime> lastChangePassDate, string nativeID, string personnelID, string activeSessionID, string systemProfile, string iPLocation, Nullable<int> departmentID, string phone, string mobile)
+        public virtual ObjectResult<sp_signup_insert_Result> sp_signup_insert(string firstName, string lastName, string userName, string password, string newPassword, Nullable<bool> isActive, Nullable<bool> isOnline, Nullable<bool> isConfirm, Nullable<System.DateTime> lastLoginTime, Nullable<bool> gender, Nullable<bool> marriedStatus, Nullable<System.DateTime> birthDate, Nullable<short> countryNo, Nullable<byte> languageNo, string address, string e_Mail, string photoPath, Nullable<System.DateTime> creationDate, Nullable<System.DateTime> editionDate, Nullable<System.DateTime> lastRefreshTime, Nullable<System.DateTime> lastChangePassDate, string nativeID, string personnelID, string activeSessionID, string systemProfile, string iPLocation, Nullable<int> departmentID, string phone, string mobile)
         {
             var firstNameParameter = firstName != null ?
                 new ObjectParameter("FirstName", firstName) :
@@ -465,7 +465,7 @@ namespace AccessManagementService.Model
                 new ObjectParameter("Mobile", mobile) :
                 new ObjectParameter("Mobile", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_signup_insert_Result>("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter);
         }
     
         public virtual int sp_active_User(Nullable<bool> isActive, Nullable<int> iD)
@@ -479,6 +479,19 @@ namespace AccessManagementService.Model
                 new ObjectParameter("ID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isActiveParameter, iDParameter);
+        }
+    
+        public virtual int SpActiveUserByUserName(string userName, Nullable<bool> isActive)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpActiveUserByUserName", userNameParameter, isActiveParameter);
         }
     }
 }

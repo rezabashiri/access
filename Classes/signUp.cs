@@ -10,62 +10,71 @@ namespace AccessManagementService.Classes
     {
         AccessEntities DB = new AccessEntities();
 
-        public void user_insert(string userName, string pass, string email)
+        public sp_signup_insert_Result UserSignUp(User user)
         {
-            bool isconfirm = false; //when this true that 
-            bool isActive = false;
-            bool isOnline = false;
+            var res = DB.sp_signup_insert(user.FirstName, user.LastName, user.UserName, user.Password, user.NewPassword, user.IsActive, user.IsOnline, user.IsConfirm, user.LastLoginTime, user.Gender, user.MarriedStatus, user.BirthDate, user.CountryNo, user.LanguageNo, user.Address, user.E_Mail, user.PhotoPath, user.CreationDate, user.EditionDate, user.LastRefreshTime, user.LastChangePassDate, user.NativeID, user.PersonnelID, user.ActiveSessionID, user.SystemProfile, user.IPLocation, user.DepartmentID, user.Phone, user.Mobile).FirstOrDefault();
 
-            DB.sp_signup_insert(null, null, userName, pass, null, isActive, isOnline, isconfirm, null, null, null, null, null, null, null, email, null, null, null, null, null, null, null, null, null, null, null, null, null);
-
+            return res;
         }
-
-        public int select(string username)
+        public sp_signup_insert_Result UserSignUp(string username, string pass, string email)
         {
-            int result = 0;
+            User u = new User();
+            u.UserName = username;
+            u.Password = pass;
+            u.E_Mail = email;
+            u.IsActive = false;
+            u.IsOnline = false;
 
-            try
-            {
-                //LINQ command for check username
-                var query = from u in DB.Users
-                            where u.UserName == username
-                            select u;
-                var user = query.ToList();
-
-                if (user.Count == 0)
-                {
-                    result = -2; // this user is not  exist
-                    return result;
-                }
-
-                if (user.Count == 1)
-                {
-
-                    if (user[0].IsActive == false)
-                    {
-                        result = -1; // this user is exist but not confirm code yet
-                        return result;
-                    }
-
-                    //update is_active true
-                    result = user[0].ID;
-                }
-            }
-            catch
-            {
-            }
-            return result;
+            return UserSignUp(u);
         }
+        //public int select(string username)
+        //{
+        //    int result = 0;
+
+        //    try
+        //    {
+        //        //LINQ command for check username
+        //        var query = from u in DB.Users
+        //                    where u.UserName == username
+        //                    select u;
+        //        var user = query.ToList();
+
+        //        if (user.Count == 0)
+        //        {
+        //            result = -2; // this user is not  exist
+        //            return result;
+        //        }
+
+        //        if (user.Count == 1)
+        //        {
+
+        //            if (user[0].IsActive == false)
+        //            {
+        //                result = -1; // this user is exist but not confirm code yet
+        //                return result;
+        //            }
+
+        //            //update is_active true
+        //            result = user[0].ID;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //    }
+        //    return result;
+        //}
 
         public void activeUsers(string userName)
         {
-            int ID = this.select(userName);
-
-            if (ID > 0)// can update
-            {
-                DB.sp_active_User(true, ID);
-            }
+            DB.SpActiveUserByUserName(userName, true);
         }
 
+        public int GenerateRandomNo()
+        {
+            int _min = 1000;
+            int _max = 9999;
+            Random _rdm = new Random();
+            return _rdm.Next(_min, _max);
+        }
     }
 }

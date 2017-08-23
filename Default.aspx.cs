@@ -11,16 +11,27 @@ namespace AccessManagementService
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var t = Access.AccessControl.LoggenInUser.ID;
-            //Access.Password _pas = new Access.Password();
-            //Access.Settings _set = new Access.Settings();
-            //_pas.LowerLtter = true;
-            //_pas.Signs = false;
-            //_pas.MinimumChar = "4";
-  
-            //_set.Password = _pas;
-            //var se = _set.Serialize();
-            //var ch = _pas.CheckPasswordPlocies("h443hh", 2);
+
+            UscSignUp.OnSendVerificationCode += UscSignUp_OnSendVerificationCode;
+            UscSignUp.OnVerificationComplete += UscSignUp_OnVerificationComplete;
+        }
+
+        private void UscSignUp_OnVerificationComplete(AccessManagementService.Access.UserActiveStatus status)
+        {
+            switch (status)
+            {
+                case Access.UserActiveStatus.Active:
+                    // Server.TransferRequest("~/Controls/LoginControl.ascx");
+                    break;
+                case Access.UserActiveStatus.NotActive:
+                    break;
+
+            }
+        }
+
+        private void UscSignUp_OnSendVerificationCode(AccessManagementService.Helpers.VerificationStatus Status)
+        {
+
         }
     }
 }

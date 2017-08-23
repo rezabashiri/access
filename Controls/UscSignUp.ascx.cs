@@ -12,11 +12,22 @@ namespace AccessManagementService.Controls
 {
     public partial class UscSignUp : System.Web.UI.UserControl
     {
+        public event Helpers.SMS.SendSms OnSendVerificationCode;
+        public event UscVerification.Verify OnVerificationComplete;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            uscVerification.OnSend += UscVerification_OnSend;
+            uscVerification.OnVerificationComplete += UscVerification_OnVerificationComplete;
+            
         }
 
+        private void UscVerification_OnVerificationComplete(Access.UserActiveStatus status)
+        {
+             if (OnVerificationComplete != null)
+            {
+                OnVerificationComplete(status);
+            }
+        }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
@@ -38,30 +49,59 @@ namespace AccessManagementService.Controls
                 lblMessage.Visible = true;
                 return;
             }
-
-            string username = txtUsername.Text;
-
-            int result = _user.select(username);
-
-            if (result == -2)// user is not exist & can insert into user table
+            else
             {
-                string password = txtPassword.Text;
-                string hashpass = hash.Encrypt(password);
-
-                string email = txtEmail.Text.Trim();
-
-                _user.user_insert(username, hashpass, email);
-
-                //go to oher page that show verificatino code
-
+                lblMessage.Visible = false;
             }
 
-            if (result == -1) // user is exist but is not confirm verification code
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            string hashpass = hash.Encrypt(password);
+
+            string email = txtEmail.Text.Trim();
+
+            var result = _user.UserSignUp(username, hashpass, email);
+
+            if (result != null)
             {
-                //go to oher page that show verificatino code
+                if (result.Active == false)
+                {
+                    //go to oher page that show verificatino code
+
+
+
+                    //Session["verificationCode"] = _user.GenerateRandomNo();
+
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('hide');", true);
+
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
+
+
+                    //string verificationCode  = _user.GenerateRandomNo().ToString();
+                    string verificationCode = "1234";
+
+                    Session["VerficationCode"] = verificationCode;
+                    Session["username"] = username;        
+
+                    //string script = @" $('#" + btnSignUp.ClientID + "').on('click', function (evt) {$('form').validationEngine('detach');});";
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "detach", script, true);
+                }
+                else
+                {
+                    //go to login page
+
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert(' شما قبلا با موفقیت ثبت نام کرده اید ');", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
+                }
             }
         }
-
+        private void UscVerification_OnSend(Helpers.VerificationStatus Status)
+        {
+            if (OnSendVerificationCode != null)
+                OnSendVerificationCode(Status);
+        }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
 

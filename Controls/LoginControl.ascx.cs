@@ -14,9 +14,9 @@ namespace AccessManagementService.Controls
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            var img = UpdateProgress1.FindControl("imgLoad") as Image;
-            if (img != null)
-                img.ImageUrl = new tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page, typeof(AccessManagementService.Controls.LoginControl), "AccessManagementService.Resources.loadingAnimation.gif");
+            //var img = UpdateProgress1.FindControl("imgLoad") as Image;
+            //if (img != null)
+            //    img.ImageUrl = new tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page, typeof(AccessManagementService.Controls.LoginControl), "AccessManagementService.Resources.loadingAnimation.gif");
         }
         public Button LoginButton
         {
@@ -30,7 +30,7 @@ namespace AccessManagementService.Controls
             get;
             set;
         }
-  
+
         public delegate void Logins(User user);
         public event Logins OnLoggedIn;
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -39,11 +39,11 @@ namespace AccessManagementService.Controls
                 return;
 
             lblMessage.Visible = false;
- 
+
             HashHelpers hash = new HashHelpers();
             User _user = new User();
-            string username=txtUserName.Text;
-            string password=txtPassword.Text;
+            string username = txtUserName.Text;
+            string password = txtPassword.Text;
             string hashpass = hash.Encrypt(password);
             int result = 0;
             string message = string.Empty;
@@ -57,7 +57,7 @@ namespace AccessManagementService.Controls
                     lblMessage.Visible = true;
                     return;
                 case 0:
-                    message = "اجازه دسترسی وجود ندارد";;
+                    message = "اجازه دسترسی وجود ندارد"; ;
                     lblMessage.Visible = true;
                     lblMessage.Text = message;
                     return;
@@ -69,7 +69,7 @@ namespace AccessManagementService.Controls
             User _logedin = newlogin.LoginUser(result, username, chkRemember.Checked);
             Access.AccessControl.SetUser(_logedin);
             OnLoggedIn(_logedin);
-               
+
         }
     }
 }

@@ -8,14 +8,17 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 using tkv.Utility;
+using AccessManagementService.Access;
 namespace AccessManagementService.Model
 {
+   
     [MetadataType(typeof(MetaData))]
      
     [System.ComponentModel.DisplayName("کاربران")]
-    
+      
     public partial class User
     {
+     
         private class MetaData
         {
             public int ID { get; set; }
@@ -129,6 +132,11 @@ namespace AccessManagementService.Model
             get;
 
         }
+        public UserActiveStatus UserActiveStatus
+        {
+            get;
+            set;
+        }
         public User GetUserById(int userid,string [] includes)
         {
 
@@ -144,6 +152,24 @@ namespace AccessManagementService.Model
                     }
                 }
                 return query.Where(x => x.ID == userid).FirstOrDefault() ?? new User { ID=-1};
+            }
+        }
+        public User GetUserByUserName(string UserName, string[] includes)
+        {
+
+            using (var db = new AccessEntities())
+            {
+                var query = db.Users.AsQueryable();
+
+                if (includes != null)
+                {
+                    foreach (string inc in includes)
+                    {
+                        query = query.Include(inc);
+                    }
+                }
+                
+                return query.Where(x => x.UserName == UserName).FirstOrDefault() ?? new User { ID = -1 };
             }
         }
         public List<User> GetAllUsers(string [] includes)
