@@ -22,8 +22,8 @@
 <head runat="server">
     <title></title>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery.flipTimer.js"></script>
-    <link rel="stylesheet" href="css/flipTimer.css">
+   
+ 
 </head>
 <body>
     <form id="form1" runat="server">

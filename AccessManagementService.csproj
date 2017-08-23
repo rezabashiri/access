@@ -114,14 +114,14 @@
     <Content Include="Controls\UscRoleSelect.ascx" />
     <Content Include="Controls\UscSignUp.ascx" />
     <Content Include="Controls\UscVerification.ascx" />
-    <Content Include="Resources\calendar.js" />
-    <Content Include="Resources\flipTimer.css" />
+    <EmbeddedResource Include="Resources\calendar.js" />
+    <EmbeddedResource Include="Resources\flipTimer.css" />
     <Content Include="Default.aspx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart.ascx" />
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
     <EmbeddedResource Include="Resources\loadingAnimation.gif" />
     <Content Include="js\jquery-3.2.1.min.js" />
-    <Content Include="jqueryflipTimer.js" />
+    <EmbeddedResource Include="Resources\jqueryflipTimer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
