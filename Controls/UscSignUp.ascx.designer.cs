@@ -13,6 +13,15 @@ namespace AccessManagementService.Controls {
     public partial class UscSignUp {
         
         /// <summary>
+        /// load control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebUtility.Controls.LoadMoroorgaranControls load;
+        
+        /// <summary>
         /// UpdatePnl_signUp control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace AccessManagementService.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadCaptcha captcha;
+        
+        /// <summary>
+        /// btnSignUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebUtility.Controls.MoroorgaranButton btnSignUp;
         
         /// <summary>
         /// pnlValidation control.

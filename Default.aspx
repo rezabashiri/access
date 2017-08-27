@@ -18,7 +18,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <script src="js/jquery-3.2.1.min.js"></script>
+    <%--<script src="js/jquery-3.2.1.min.js"></script>--%>
 
     <%--    <link rel="stylesheet" href="Resources/flipclock.css" />
 <script src="Resources/flipclock.js"></script>--%>
@@ -49,8 +49,6 @@
         <%--<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true"  LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>--%>
 
         <%--<uc1:MoroorgaranButton ID="MoroorgaranButton1" OnClick="MoroorgaranButton1_Click" runat="server" ValidateionType="validate" Width="100%" ValidationGroup="aut"  CssClass="btn btn-lg   mt-15" Text="ثبت نام" />--%>
-
-        <%--<uc1:UscSignUp runat="server" ID="UscSignUp" />--%>
 
 
         <button class="btn btn-primary btn-lg" id="btnsignup">

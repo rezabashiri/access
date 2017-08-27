@@ -13,6 +13,7 @@ namespace AccessManagementService.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+             
 
             var img = UpdateProgress1.FindControl("imgLoad") as Image;
             if (img != null)

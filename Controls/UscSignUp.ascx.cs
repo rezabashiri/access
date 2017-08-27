@@ -8,10 +8,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using tkv.Utility;
 
+
 namespace AccessManagementService.Controls
 {
     public partial class UscSignUp : System.Web.UI.UserControl
     {
+        //WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
+
+
+
         public event Helpers.SMS.SendSms OnSendVerificationCode;
         public event UscVerification.Verify OnVerificationComplete;
         protected void Page_Init(object sender, EventArgs e)
@@ -84,8 +89,8 @@ namespace AccessManagementService.Controls
 
 
 
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
 
 
                     //string verificationCode  = _user.GenerateRandomNo().ToString();

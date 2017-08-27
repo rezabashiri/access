@@ -29,6 +29,9 @@ namespace AccessManagementService.Controls
             WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.js");
             //WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(Default), "AccessManagementService.Resources.jquery-3.2.1.min.js");
 
+            WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
+
+
             if (Session["VerficationCode"] != null)
             {
                 VerficationCode = Session["VerficationCode"].ToString();

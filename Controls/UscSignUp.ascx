@@ -2,11 +2,12 @@
 <%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
 <%@ Register Src="~/Controls/UscVerification.ascx" TagPrefix="uc1" TagName="UscVerification" %>
 
+  <%--<link href="../Resources/customStylesheet.css" rel="stylesheet" />--%>
 
-<link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(LoginControl),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
+<link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(UscSignUp),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
-<%--<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>--%>
-<asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Always" ValidateRequestMode="Enabled">
+<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
+<asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Conditional" ValidateRequestMode="Enabled">
     <ContentTemplate>
 
         <asp:Panel ID="pnlsignUp" Visible="true" runat="server">
@@ -25,7 +26,7 @@
                 <fieldset>
 
                     <section>
-                        <label class="label">تلفن همراه</label>
+                         <label class="label">تلفن همراه</label>
                         <label class="input">
                             <i class="icon-append fa fa-mobile"></i>
                             <asp:TextBox ID="txtUsername" CssClass="validate[required,custom[phone],minSize[11],maxSize[11]] form-control" runat="server"></asp:TextBox>
@@ -66,7 +67,7 @@
                 </fieldset>
                 <footer>
 
-                    <%--<uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="validate" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />--%>
+                    <uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="validate" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />
 
                     <div class="col-sm-12 text-center">
 
@@ -93,9 +94,9 @@
 
         <!-- /.modal -->
     </ContentTemplate>
-  <%--  <Triggers>
+    <Triggers>
         <asp:AsyncPostBackTrigger ControlID="btnSignUp" />
-    </Triggers>--%>
+    </Triggers>
 </asp:UpdatePanel>
 
 

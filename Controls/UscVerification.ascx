@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UscVerification.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.Verification" Inherits="AccessManagementService.Controls.UscVerification" %>
 <%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
 
-  <link href="../CSS/customStylesheet.css" rel="stylesheet" />
+  <%--<link href="../Resources/customStylesheet.css" rel="stylesheet" />--%>
 
  
 <div>
