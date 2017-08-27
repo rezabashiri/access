@@ -14,9 +14,9 @@ namespace AccessManagementService.Controls
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //var img = UpdateProgress1.FindControl("imgLoad") as Image;
-            //if (img != null)
-            //    img.ImageUrl = new tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page, typeof(AccessManagementService.Controls.LoginControl), "AccessManagementService.Resources.loadingAnimation.gif");
+            var img = UpdateProgress1.FindControl("imgLoad") as Image;
+            if (img != null)
+                img.ImageUrl = new tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page, typeof(AccessManagementService.Controls.LoginControl), "AccessManagementService.Resources.loadingAnimation.gif");
         }
         public Button LoginButton
         {

@@ -2,7 +2,8 @@
 <%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
 <%@ Register Src="~/Controls/UscVerification.ascx" TagPrefix="uc1" TagName="UscVerification" %>
 
-<link href="../Resources/customStylesheet.css" rel="stylesheet" />
+
+<link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(LoginControl),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
 <%--<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>--%>
 <asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Always" ValidateRequestMode="Enabled">

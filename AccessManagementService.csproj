@@ -147,7 +147,6 @@
     <Compile Include="Classes\signUp.cs" />
     <Compile Include="Controls\test.ascx.cs">
       <DependentUpon>test.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controls\test.ascx.designer.cs">
       <DependentUpon>test.ascx</DependentUpon>
