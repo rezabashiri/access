@@ -14,11 +14,17 @@ namespace AccessManagementService.Controls
     {
         public event Helpers.SMS.SendSms OnSendVerificationCode;
         public event UscVerification.Verify OnVerificationComplete;
+        protected void Page_Init(object sender, EventArgs e)
+        {
+
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            uscVerification.OnSend += UscVerification_OnSend;
-            uscVerification.OnVerificationComplete += UscVerification_OnVerificationComplete;
-            
+            if (uscVerification != null)
+            {
+                uscVerification.OnSend += UscVerification_OnSend;
+                uscVerification.OnVerificationComplete += UscVerification_OnVerificationComplete;
+            }
         }
 
         private void UscVerification_OnVerificationComplete(Access.UserActiveStatus status)
@@ -75,8 +81,11 @@ namespace AccessManagementService.Controls
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('hide');", true);
 
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
+
+
+
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
 
 
                     //string verificationCode  = _user.GenerateRandomNo().ToString();
@@ -92,8 +101,8 @@ namespace AccessManagementService.Controls
                 {
                     //go to login page
 
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert(' شما قبلا با موفقیت ثبت نام کرده اید ');", true);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert(' شما قبلا با موفقیت ثبت نام کرده اید ');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
                 }
             }
         }

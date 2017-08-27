@@ -109,9 +109,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\component\Utility\bin\Release\tkvUtility.dll</HintPath>
     </Reference>
-    <Reference Include="WebUtilityv2, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\WebUtilityv2.dll</HintPath>
+    <Reference Include="WebUtilityv2">
+      <HintPath>..\..\WebUtility_v2\bin\WebUtilityv2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -40,7 +40,7 @@
 
             <%--<uc1:UscControl runat="server" id="UscControl" />--%>
             <%--<uc1:UscOrganization runat="server" ID="UscOrganization" />--%>
-            <uc1:LoginControl runat="server" ID="LoginControl" /> 
+            <%--<uc1:LoginControl runat="server" ID="LoginControl" />--%> 
 
             <%--<uc1:UscSignUp runat="server" ID="signupControl" />--%>
             <%--<uc1:UscVerification runat="server" ID="UscSignUp1" />--%>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
                     </div>
                 </div>
             </div>

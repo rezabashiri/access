@@ -2,9 +2,9 @@
 <%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
 <%@ Register Src="~/Controls/UscVerification.ascx" TagPrefix="uc1" TagName="UscVerification" %>
 
-<link href="../CSS/customStylesheet.css" rel="stylesheet" />
+<link href="../Resources/customStylesheet.css" rel="stylesheet" />
 
-<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
+<%--<uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>--%>
 <asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Always" ValidateRequestMode="Enabled">
     <ContentTemplate>
 
@@ -65,7 +65,7 @@
                 </fieldset>
                 <footer>
 
-                    <uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="validate" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />
+                    <%--<uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="validate" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />--%>
 
                     <div class="col-sm-12 text-center">
 
@@ -92,13 +92,11 @@
 
         <!-- /.modal -->
     </ContentTemplate>
-    <Triggers>
+  <%--  <Triggers>
         <asp:AsyncPostBackTrigger ControlID="btnSignUp" />
-    </Triggers>
+    </Triggers>--%>
 </asp:UpdatePanel>
-<%-- <script type="text/javascript">
-     $('#modal_close').on("click", "function(evt) {$('#myModal').modal('hide');}");
- </script>--%>
+
 
 
 <div class="modal fade" id="myModal">
@@ -116,7 +114,7 @@
                 </asp:Panel>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="modal_close">بستن</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
             </div>
         </div>
         <!-- /.modal-content -->
