@@ -1,16 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginControl.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.Login" Inherits="AccessManagementService.Controls.LoginControl" %>
-<%--<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>--%>
-
+<%@ Register Assembly="GoogleReCaptcha" Namespace="GoogleReCaptcha" TagPrefix="cc1" %>
 <link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(LoginControl),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
-<asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePnl1" runat="server">
-    <ProgressTemplate>
+<asp:UpdateProgress id="updateprogress1" associatedupdatepanelid="updatepnl1" runat="server">
+    <progresstemplate>
         <div class="col-sm-4"></div>
         <div class="col-sm-8 text-center" style="margin-bottom: 15px">
 
-            <asp:Image ID="imgLoad" runat="server" />
+            <asp:image id="imgload" runat="server" />
         </div>
-    </ProgressTemplate>
+    </progresstemplate>
 </asp:UpdateProgress>
 
 <asp:UpdatePanel runat="server" ID="UpdatePnl1" UpdateMode="Conditional" ValidateRequestMode="Enabled">
@@ -50,10 +49,11 @@
                     </div>
                 </section>
                 <section>
-             <%--       <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
+              <%--    <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
                         <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
                         <TextBoxLabelDecoration />
                     </telerik:RadCaptcha>--%>
+                    <cc1:GoogleReCaptcha ID="ctrlGoogleReCaptcha" runat="server" PublicKey="6Lfnly4UAAAAAFdF83pIYOk6HlkDqNAiFa_891IK" PrivateKey="6Lfnly4UAAAAAH_UMAI1TrsS0qdk1TKNet2w2cjd" />
                 </section>
                 <section>
                     <label class="checkbox">

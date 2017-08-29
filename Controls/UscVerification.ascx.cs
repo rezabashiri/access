@@ -23,6 +23,23 @@ namespace AccessManagementService.Controls
         {
             get; set;
         }
+
+        public string GroupName
+        {
+            get
+            {
+                if (ViewState["__GroupName"] != null)
+                {
+                    return ViewState["__GroupName"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__GroupName"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.css");
@@ -42,6 +59,8 @@ namespace AccessManagementService.Controls
                 Username = Session["username"].ToString();
             }
 
+
+
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
@@ -51,7 +70,7 @@ namespace AccessManagementService.Controls
                 if (txtverificationCode.Text == VerficationCode)
                 {
                     signUp su = new Classes.signUp();
-                    su.activeUsers(Username);
+                    su.activeUsers(Username, GroupName);
 
 
                     if (OnVerificationComplete != null)

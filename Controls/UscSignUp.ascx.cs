@@ -13,8 +13,17 @@ namespace AccessManagementService.Controls
 {
     public partial class UscSignUp : System.Web.UI.UserControl
     {
-        //WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
-
+        public string GroupName
+        {
+            get
+            {
+                return uscVerification.GroupName;
+            }
+            set
+            {
+                uscVerification.GroupName = value;
+            }
+        }
 
 
         public event Helpers.SMS.SendSms OnSendVerificationCode;
@@ -42,6 +51,8 @@ namespace AccessManagementService.Controls
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+            WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
+
             if (!Page.IsValid)
                 return;
 
@@ -80,13 +91,10 @@ namespace AccessManagementService.Controls
                     //go to oher page that show verificatino code
 
 
-
                     //Session["verificationCode"] = _user.GenerateRandomNo();
 
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('hide');", true);
-
-
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
 
 
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
@@ -97,7 +105,7 @@ namespace AccessManagementService.Controls
                     string verificationCode = "1234";
 
                     Session["VerficationCode"] = verificationCode;
-                    Session["username"] = username;        
+                    Session["username"] = username;
 
                     //string script = @" $('#" + btnSignUp.ClientID + "').on('click', function (evt) {$('form').validationEngine('detach');});";
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "detach", script, true);

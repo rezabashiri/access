@@ -12,8 +12,8 @@ namespace AccessManagementService
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            UscSignUp.OnSendVerificationCode += UscSignUp_OnSendVerificationCode;
-            UscSignUp.OnVerificationComplete += UscSignUp_OnVerificationComplete;
+            //UscSignUp.OnSendVerificationCode += UscSignUp_OnSendVerificationCode;
+            //UscSignUp.OnVerificationComplete += UscSignUp_OnVerificationComplete;
         }
 
         private void UscSignUp_OnVerificationComplete(AccessManagementService.Access.UserActiveStatus status)

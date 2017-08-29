@@ -40,7 +40,8 @@
 
             <%--<uc1:UscControl runat="server" id="UscControl" />--%>
             <%--<uc1:UscOrganization runat="server" ID="UscOrganization" />--%>
-            <%--<uc1:LoginControl runat="server" ID="LoginControl" />--%> 
+            
+            <uc1:LoginControl runat="server" ID="LoginControl" /> 
 
             <%--<uc1:UscSignUp runat="server" ID="signupControl" />--%>
             <%--<uc1:UscVerification runat="server" ID="UscSignUp1" />--%>
@@ -70,7 +71,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="box-body">
-                            <uc1:UscSignUp runat="server" ID="UscSignUp" />
+                            <uc1:UscSignUp runat="server" GroupName="advertiser" ID="UscSignUp" />
                         </div>
                     </div>
                     <div class="modal-footer">

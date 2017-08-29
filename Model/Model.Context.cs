@@ -347,6 +347,48 @@ namespace AccessManagementService.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertDepartment", departmentNameParameter, phonesParameter, faxesParameter, adressParameter, emailAdressParameter, deparetmentChartXMLParameter, logoPathParameter, isNeerdToConfirmParameter, isNeedConfirmToChangePasswordParameter, isVisibleParameter, seetingParameter);
         }
     
+        public virtual int sp_active_User(Nullable<bool> isActive, Nullable<int> iD)
+        {
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isActiveParameter, iDParameter);
+        }
+    
+        public virtual int SpActiveUserByUserName(string userName, Nullable<bool> isActive, Nullable<bool> isConfirm, string groupName, string orgRoleName, string roleName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("isActive", isActive) :
+                new ObjectParameter("isActive", typeof(bool));
+    
+            var isConfirmParameter = isConfirm.HasValue ?
+                new ObjectParameter("isConfirm", isConfirm) :
+                new ObjectParameter("isConfirm", typeof(bool));
+    
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("GroupName", groupName) :
+                new ObjectParameter("GroupName", typeof(string));
+    
+            var orgRoleNameParameter = orgRoleName != null ?
+                new ObjectParameter("OrgRoleName", orgRoleName) :
+                new ObjectParameter("OrgRoleName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpActiveUserByUserName", userNameParameter, isActiveParameter, isConfirmParameter, groupNameParameter, orgRoleNameParameter, roleNameParameter);
+        }
+    
         public virtual ObjectResult<sp_signup_insert_Result> sp_signup_insert(string firstName, string lastName, string userName, string password, string newPassword, Nullable<bool> isActive, Nullable<bool> isOnline, Nullable<bool> isConfirm, Nullable<System.DateTime> lastLoginTime, Nullable<bool> gender, Nullable<bool> marriedStatus, Nullable<System.DateTime> birthDate, Nullable<short> countryNo, Nullable<byte> languageNo, string address, string e_Mail, string photoPath, Nullable<System.DateTime> creationDate, Nullable<System.DateTime> editionDate, Nullable<System.DateTime> lastRefreshTime, Nullable<System.DateTime> lastChangePassDate, string nativeID, string personnelID, string activeSessionID, string systemProfile, string iPLocation, Nullable<int> departmentID, string phone, string mobile)
         {
             var firstNameParameter = firstName != null ?
@@ -466,32 +508,6 @@ namespace AccessManagementService.Model
                 new ObjectParameter("Mobile", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_signup_insert_Result>("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter);
-        }
-    
-        public virtual int sp_active_User(Nullable<bool> isActive, Nullable<int> iD)
-        {
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_active_User", isActiveParameter, iDParameter);
-        }
-    
-        public virtual int SpActiveUserByUserName(string userName, Nullable<bool> isActive)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("isActive", isActive) :
-                new ObjectParameter("isActive", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpActiveUserByUserName", userNameParameter, isActiveParameter);
         }
     }
 }

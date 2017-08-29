@@ -239,6 +239,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Right_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="0..1" />
+          <End Role="Right" Type="Self.Right" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right">
+              <PropertyRef Name="EntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Role_OrganiztionRole">
           <End Role="OrganiztionRole" Type="Self.OrganiztionRole" Multiplicity="0..1" />
           <End Role="Role" Type="Self.Role" Multiplicity="*" />
@@ -376,7 +388,7 @@
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="ParrentID" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_signup_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="sp_signup_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
@@ -407,9 +419,13 @@
           <Parameter Name="Phone" Type="varchar" Mode="In" />
           <Parameter Name="Mobile" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="SpActiveUserByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SpActiveUserByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="asc">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="isActive" Type="bit" Mode="In" />
+          <Parameter Name="isConfirm" Type="bit" Mode="In" />
+          <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrgRoleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="MPOModelStoreContainer">
           <EntitySet Name="Department" EntityType="Self.Department" Schema="asc" store:Type="Tables" />
@@ -450,6 +466,10 @@
           <AssociationSet Name="FK_OrganiztionRole_OrganiztionRole" Association="Self.FK_OrganiztionRole_OrganiztionRole">
             <End Role="OrganiztionRole" EntitySet="OrganiztionRole" />
             <End Role="OrganiztionRole1" EntitySet="OrganiztionRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Right_Entity" Association="Self.FK_Right_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Right" EntitySet="Right" />
           </AssociationSet>
           <AssociationSet Name="FK_Role_OrganiztionRole" Association="Self.FK_Role_OrganiztionRole">
             <End Role="OrganiztionRole" EntitySet="OrganiztionRole" />
@@ -586,6 +606,27 @@
             <Parameter Name="IsVisible" Mode="In" Type="Boolean" />
             <Parameter Name="seeting" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_active_User">
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Users" EntityType="MPOModel.User" />
+          <AssociationSet Name="FK_User_Department" Association="MPOModel.FK_User_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_User" Association="MPOModel.FK_Role_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <FunctionImport Name="SpActiveUserByUserName">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="isConfirm" Mode="In" Type="Boolean" />
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="OrgRoleName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_signup_insert" ReturnType="Collection(MPOModel.sp_signup_insert_Result)">
             <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
@@ -617,23 +658,6 @@
             <Parameter Name="Phone" Mode="In" Type="String" />
             <Parameter Name="Mobile" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_active_User">
-            <Parameter Name="isActive" Mode="In" Type="Boolean" />
-            <Parameter Name="ID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SpActiveUserByUserName">
-          <Parameter Name="UserName" Mode="In" Type="String" />
-            <Parameter Name="isActive" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <EntitySet Name="Users" EntityType="MPOModel.User" />
-          <AssociationSet Name="FK_User_Department" Association="MPOModel.FK_User_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Role_User" Association="MPOModel.FK_Role_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Role" EntitySet="Roles" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Entity">
           <Key>
@@ -818,10 +842,6 @@
           <End Type="MPOModel.Department" Role="Department" Multiplicity="*" />
           <End Type="MPOModel.Role" Role="Role" Multiplicity="*" />
         </Association>
-        <ComplexType Name="sp_signup_insert_Result">
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="Boolean" Name="Active" Nullable="true" />
-        </ComplexType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -883,6 +903,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_signup_insert_Result">
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1045,15 +1069,6 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="InsertDepartment" FunctionName="MPOModel.Store.InsertDepartment" />
-          <FunctionImportMapping FunctionImportName="sp_signup_insert" FunctionName="MPOModel.Store.sp_signup_insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MPOModel.sp_signup_insert_Result">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SpActiveUserByUserName" FunctionName="MPOModel.Store.SpActiveUserByUserName" />
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MPOModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -1090,6 +1105,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SpActiveUserByUserName" FunctionName="MPOModel.Store.SpActiveUserByUserName" />
+          <FunctionImportMapping FunctionImportName="sp_signup_insert" FunctionName="MPOModel.Store.sp_signup_insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MPOModel.sp_signup_insert_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

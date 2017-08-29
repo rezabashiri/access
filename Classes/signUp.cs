@@ -64,9 +64,9 @@ namespace AccessManagementService.Classes
         //    return result;
         //}
 
-        public void activeUsers(string userName)
+        public void activeUsers(string userName, string groupName)
         {
-            DB.SpActiveUserByUserName(userName, true);
+            DB.SpActiveUserByUserName(userName, true, true, groupName, groupName, userName);
         }
 
         public int GenerateRandomNo()
