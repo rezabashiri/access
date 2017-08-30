@@ -15,5 +15,6 @@ namespace AccessManagementService.Model
     {
         public Nullable<int> UserId { get; set; }
         public Nullable<bool> Active { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

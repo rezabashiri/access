@@ -12,9 +12,11 @@
 
 <section>
 
- 	<div class="clock" style="margin:2px 0px 21px 134px;"></div>
+ 	<div class="clock" runat="server" id="clock" style="margin:2px 0px 21px 134px;"></div>
 	<div class="message label label-danger" style="direction:rtl;float:right;"></div>
 </section>
+
+<uc1:MessageBox ID="uscMessage" runat="server"></uc1:MessageBox>
 
 
 <asp:UpdatePanel runat="server" ID="UpdatePnl1" UpdateMode="Conditional">
@@ -67,7 +69,7 @@
  <script type="text/javascript">
 
      //window.onload = timer();
-     function timer()
+     function timer<%= this.ClientID %>()
      {
          var clock;
 
@@ -79,7 +81,7 @@
          //$(document).ready(function () {
          var clock;
 
-         clock = $('.clock').FlipClock({
+         clock = $('#<%= clock.ClientID %>').FlipClock({
              clockFace: 'MinuteCounter',
              autoStart: false,
              callbacks: {

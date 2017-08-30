@@ -16,12 +16,34 @@ namespace AccessManagementService.Controls
         public event Verify OnVerificationComplete;
         public string VerficationCode
         {
-            get; set;
+            get
+            {
+                if (ViewState["__VerficationCode"] != null)
+                {
+                    return ViewState["__VerficationCode"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__VerficationCode"] = value;
+            }
         }
 
         public string Username
         {
-            get; set;
+            get
+            {
+                if (ViewState["__Username"] != null)
+                {
+                    return ViewState["__Username"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__Username"] = value;
+            }
         }
 
         public string GroupName
@@ -49,18 +71,15 @@ namespace AccessManagementService.Controls
             WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
 
 
-            if (Session["VerficationCode"] != null)
-            {
-                VerficationCode = Session["VerficationCode"].ToString();
-            }
+            //if (Session["VerficationCode"] != null)
+            //{
+            //    VerficationCode = Session["VerficationCode"].ToString();
+            //}
 
-            if (Session["username"] != null)
-            {
-                Username = Session["username"].ToString();
-            }
-
-
-
+            //if (Session["username"] != null)
+            //{
+            //    Username = Session["username"].ToString();
+            //}
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
@@ -77,12 +96,14 @@ namespace AccessManagementService.Controls
                     {
                         OnVerificationComplete(Access.UserActiveStatus.Active);
                     }
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert(' با تشکر از ثبت نام شما ');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert(' با تشکر از ثبت نام شما ');", true);
+                    uscMessage.ShowMessage("با تشکر از ثبت نام شما", WebUtility.Controls.MessageBox.MessageType.success);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
                 }
                 else
                 {
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
+                    uscMessage.ShowMessage("متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
 
                     if (OnVerificationComplete != null)

@@ -67,10 +67,6 @@
       <HintPath>..\..\viral\source\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GoogleReCaptcha, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a06ae856e1ad877e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\GoogleReCaptcha.dll</HintPath>
-    </Reference>
     <Reference Include="Kavenegar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Kavenegar.dll</HintPath>
@@ -114,7 +110,7 @@
       <HintPath>..\..\..\component\Utility\bin\Release\tkvUtility.dll</HintPath>
     </Reference>
     <Reference Include="WebUtilityv2">
-      <HintPath>..\..\WebUtility_v2\bin\WebUtilityv2.dll</HintPath>
+      <HintPath>packages\WebUtilityv2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

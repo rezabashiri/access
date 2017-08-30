@@ -49,11 +49,11 @@
                     </div>
                 </section>
                 <section>
-              <%--    <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
+                  <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
                         <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
                         <TextBoxLabelDecoration />
-                    </telerik:RadCaptcha>--%>
-                    <cc1:GoogleReCaptcha ID="ctrlGoogleReCaptcha" runat="server" PublicKey="6Lfnly4UAAAAAFdF83pIYOk6HlkDqNAiFa_891IK" PrivateKey="6Lfnly4UAAAAAH_UMAI1TrsS0qdk1TKNet2w2cjd" />
+                    </telerik:RadCaptcha>
+                    <%--<cc1:GoogleReCaptcha ID="ctrlGoogleReCaptcha" runat="server" PublicKey="6Lfnly4UAAAAAFdF83pIYOk6HlkDqNAiFa_891IK" PrivateKey="6Lfnly4UAAAAAH_UMAI1TrsS0qdk1TKNet2w2cjd" />--%>
                 </section>
                 <section>
                     <label class="checkbox">

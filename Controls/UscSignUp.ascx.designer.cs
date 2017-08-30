@@ -31,6 +31,15 @@ namespace AccessManagementService.Controls {
         protected global::System.Web.UI.UpdatePanel UpdatePnl_signUp;
         
         /// <summary>
+        /// uscMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebUtility.Controls.MessageBox uscMessage;
+        
+        /// <summary>
         /// pnlsignUp control.
         /// </summary>
         /// <remarks>

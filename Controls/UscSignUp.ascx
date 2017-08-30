@@ -2,13 +2,18 @@
 <%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
 <%@ Register Src="~/Controls/UscVerification.ascx" TagPrefix="uc1" TagName="UscVerification" %>
 
-  <%--<link href="../Resources/customStylesheet.css" rel="stylesheet" />--%>
+<%--<%@ Register Assembly="GoogleReCaptcha" Namespace="GoogleReCaptcha" TagPrefix="cc1" %>--%>
+
+<%--<link href="../Resources/customStylesheet.css" rel="stylesheet" />--%>
 
 <link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(UscSignUp),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
 <uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
+
 <asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Conditional" ValidateRequestMode="Enabled">
     <ContentTemplate>
+
+        <uc1:MessageBox ID="uscMessage" runat="server"></uc1:MessageBox>
 
         <asp:Panel ID="pnlsignUp" Visible="true" runat="server">
 
@@ -26,7 +31,7 @@
                 <fieldset>
 
                     <section>
-                         <label class="label">تلفن همراه</label>
+                        <label class="label">تلفن همراه</label>
                         <label class="input">
                             <i class="icon-append fa fa-mobile"></i>
                             <asp:TextBox ID="txtUsername" CssClass="validate[required,custom[phone],minSize[11],maxSize[11]] form-control" runat="server"></asp:TextBox>
@@ -55,7 +60,7 @@
                         <label class="input">
                             <i class="icon-append fa fa-user"></i>
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
-                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا نام کاربری یا ایمیل خود را وارد نمائید</b></label>
+                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا ایمیل خود را وارد نمائید</b></label>
                     </section>
 
                     <section>
@@ -63,6 +68,7 @@
                             <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
                             <TextBoxLabelDecoration />
                         </telerik:RadCaptcha>
+                        <%--<cc1:GoogleReCaptcha ID="ctrlGoogleReCaptcha" runat="server" PublicKey="6Lfnly4UAAAAAFdF83pIYOk6HlkDqNAiFa_891IK" PrivateKey="6Lfnly4UAAAAAH_UMAI1TrsS0qdk1TKNet2w2cjd" />--%>
                     </section>
                 </fieldset>
                 <footer>
@@ -101,7 +107,7 @@
 
 
 
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="<%= this.ClientID %>">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

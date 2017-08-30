@@ -34,6 +34,8 @@ namespace AccessManagementService.Controls
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            uscMessage.ShowMessage("ssssB", WebUtility.Controls.MessageBox.MessageType.info);
+
             if (uscVerification != null)
             {
                 uscVerification.OnSend += UscVerification_OnSend;
@@ -43,7 +45,7 @@ namespace AccessManagementService.Controls
 
         private void UscVerification_OnVerificationComplete(Access.UserActiveStatus status)
         {
-             if (OnVerificationComplete != null)
+            if (OnVerificationComplete != null)
             {
                 OnVerificationComplete(status);
             }
@@ -51,10 +53,8 @@ namespace AccessManagementService.Controls
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
-
-            if (!Page.IsValid)
-                return;
+            //if (!Page.IsValid)
+            //    return;
 
             lblMessage.Visible = false;
 
@@ -91,21 +91,31 @@ namespace AccessManagementService.Controls
                     //go to oher page that show verificatino code
 
 
-                    //Session["verificationCode"] = _user.GenerateRandomNo();
+                    if (result.Status > 0)
+                    {
+                        // user exist and not verification yet
+                        //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
+                        uscMessage.ShowMessage("شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
+
+                    }
 
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
 
 
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#" + this.ClientID + " ').modal();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer" + uscVerification.ClientID + "();", true);
 
 
                     //string verificationCode  = _user.GenerateRandomNo().ToString();
                     string verificationCode = "1234";
 
-                    Session["VerficationCode"] = verificationCode;
-                    Session["username"] = username;
+
+                    uscVerification.VerficationCode = verificationCode;
+                    uscVerification.Username = username;
+
+                    //Session["VerficationCode"] = verificationCode;
+                    //Session["username"] = username;
 
                     //string script = @" $('#" + btnSignUp.ClientID + "').on('click', function (evt) {$('form').validationEngine('detach');});";
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "detach", script, true);
@@ -114,8 +124,9 @@ namespace AccessManagementService.Controls
                 {
                     //go to login page
 
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert(' شما قبلا با موفقیت ثبت نام کرده اید ');", true);
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
+                    uscMessage.ShowMessage("لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ",  WebUtility.Controls.MessageBox.MessageType.danger);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ');", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
                 }
             }
         }

@@ -24,6 +24,7 @@ namespace AccessManagementService.Classes
             u.E_Mail = email;
             u.IsActive = false;
             u.IsOnline = false;
+            u.IPLocation = tkv.Utility.WebHelpers.UserIPAddress;
 
             return UserSignUp(u);
         }
