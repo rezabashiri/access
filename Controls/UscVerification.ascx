@@ -16,7 +16,8 @@
 	<div class="message label label-danger" style="direction:rtl;float:right;"></div>
 </section>
 
-<uc1:MessageBox ID="uscMessage" runat="server"></uc1:MessageBox>
+
+<uc1:MessageBox ID="messageVerifiaction1" runat="server"></uc1:MessageBox>
 
 
 <asp:UpdatePanel runat="server" ID="UpdatePnl1" UpdateMode="Conditional">

@@ -34,8 +34,6 @@ namespace AccessManagementService.Controls
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            uscMessage.ShowMessage("ssssB", WebUtility.Controls.MessageBox.MessageType.info);
-
             if (uscVerification != null)
             {
                 uscVerification.OnSend += UscVerification_OnSend;
@@ -53,6 +51,7 @@ namespace AccessManagementService.Controls
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+
             //if (!Page.IsValid)
             //    return;
 
@@ -94,8 +93,8 @@ namespace AccessManagementService.Controls
                     if (result.Status > 0)
                     {
                         // user exist and not verification yet
-                        //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
-                        uscMessage.ShowMessage("شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
+                        //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
+                        WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
 
                     }
 
@@ -124,8 +123,8 @@ namespace AccessManagementService.Controls
                 {
                     //go to login page
 
-                    uscMessage.ShowMessage("لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ",  WebUtility.Controls.MessageBox.MessageType.danger);
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ');", true);
+                    //MessageBoxSignup1.ShowMessage(btnSignUp, "لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ", WebUtility.Controls.MessageBox.MessageType.danger);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ');", true);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
                 }
             }
@@ -137,6 +136,13 @@ namespace AccessManagementService.Controls
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            MessageBoxSignup1.ShowMessage(Button1, "salam", WebUtility.Controls.MessageBox.MessageType.danger);
+            // WebUtility.Helpers.RegisterHelpers.RegisterScript(Button1, "alert", "showUscSignUpAdvertiser_MessageBoxSignup1('sa','info');", true);
 
         }
     }

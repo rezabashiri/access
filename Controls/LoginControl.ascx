@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginControl.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.Login" Inherits="AccessManagementService.Controls.LoginControl" %>
-<%@ Register Assembly="GoogleReCaptcha" Namespace="GoogleReCaptcha" TagPrefix="cc1" %>
 <link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(LoginControl),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
 <asp:UpdateProgress id="updateprogress1" associatedupdatepanelid="updatepnl1" runat="server">

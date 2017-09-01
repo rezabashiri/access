@@ -69,17 +69,6 @@ namespace AccessManagementService.Controls
             //WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(Default), "AccessManagementService.Resources.jquery-3.2.1.min.js");
 
             WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
-
-
-            //if (Session["VerficationCode"] != null)
-            //{
-            //    VerficationCode = Session["VerficationCode"].ToString();
-            //}
-
-            //if (Session["username"] != null)
-            //{
-            //    Username = Session["username"].ToString();
-            //}
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
@@ -97,13 +86,13 @@ namespace AccessManagementService.Controls
                         OnVerificationComplete(Access.UserActiveStatus.Active);
                     }
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert(' با تشکر از ثبت نام شما ');", true);
-                    uscMessage.ShowMessage("با تشکر از ثبت نام شما", WebUtility.Controls.MessageBox.MessageType.success);
+                    messageVerifiaction1.ShowMessage(btnOK,"با تشکر از ثبت نام شما", WebUtility.Controls.MessageBox.MessageType.success);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
                 }
                 else
                 {
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
-                    uscMessage.ShowMessage("متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
+                    messageVerifiaction1.ShowMessage(btnOK,"متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
 
                     if (OnVerificationComplete != null)

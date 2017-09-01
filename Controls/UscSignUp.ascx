@@ -10,10 +10,13 @@
 
 <uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
 
+<uc1:MessageBox ID="MessageBoxSignup1" runat="server"></uc1:MessageBox>
+
+
+
 <asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Conditional" ValidateRequestMode="Enabled">
     <ContentTemplate>
-
-        <uc1:MessageBox ID="uscMessage" runat="server"></uc1:MessageBox>
+       
 
         <asp:Panel ID="pnlsignUp" Visible="true" runat="server">
 
@@ -73,7 +76,7 @@
                 </fieldset>
                 <footer>
 
-                    <uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="validate" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />
+                    <uc1:MoroorgaranButton ID="btnSignUp" runat="server" ValidateionType="none" Width="100%" OnClick="btnSignUp_Click" ValidationGroup="aut" CssClass="btn btn-lg btn-primary mt-15" Text="ثبت نام" />
 
                     <div class="col-sm-12 text-center">
 
@@ -96,12 +99,14 @@
            -->
         </asp:Panel>
 
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
 
 
         <!-- /.modal -->
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="btnSignUp" />
+        <asp:AsyncPostBackTrigger ControlID="Button1" />
     </Triggers>
 </asp:UpdatePanel>
 

@@ -13,7 +13,6 @@ namespace AccessManagementService
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            uscMessage.ShowMessage("ssssB", WebUtility.Controls.MessageBox.MessageType.info);
 
             //UscSignUp.OnSendVerificationCode += UscSignUp_OnSendVerificationCode;
             //UscSignUp.OnVerificationComplete += UscSignUp_OnVerificationComplete;
@@ -37,14 +36,15 @@ namespace AccessManagementService
 
         }
 
-        protected static string ReCaptcha_Key = "6Lfnly4UAAAAAFdF83pIYOk6HlkDqNAiFa_891IK";
-        protected static string ReCaptcha_Secret = "6Lfnly4UAAAAAH_UMAI1TrsS0qdk1TKNet2w2cjd";
-
-        [WebMethod]
-        public static string VerifyCaptcha(string response)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            string url = "https://www.google.com/recaptcha/api/siteverify?secret=" + ReCaptcha_Secret + "&response=" + response;
-            return (new WebClient()).DownloadString(url);
+          //  MessageBox1.ShowMessage("ssssB", WebUtility.Controls.MessageBox.MessageType.info);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+          //  uscMessage3.ShowMessage("ssssB3", WebUtility.Controls.MessageBox.MessageType.danger);
+
         }
     }
 }

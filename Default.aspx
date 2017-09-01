@@ -11,8 +11,6 @@
 
 <%--<%@ Register Src="~/Controls/UscOrganization.ascx" TagPrefix="uc1" TagName="UscOrganization" %>--%>
 
-
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,9 +21,9 @@
     <%--    <link rel="stylesheet" href="Resources/flipclock.css" />
 <script src="Resources/flipclock.js"></script>--%>
 
-    <%--   <link rel="stylesheet" href="bootstrap.min.css" />
-    <%--<script src="Resources/jquery-1.11.0.js"></script>
-    --%>
+    <%--   <link rel="stylesheet" href="bootstrap.min.css" /> --%>
+    <%--<script src="Resources/jquery-1.11.0.js"></script>--%>
+
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -34,12 +32,19 @@
 
 </head>
 <body>
+
+
     <form id="form1" runat="server">
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
         </telerik:RadScriptManager>
-       
-        <uc1:MessageBox ID="uscMessage" runat="server"></uc1:MessageBox>
 
+  
+
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button2" />
+
+        <button id="btnTest">test</button>
+        <button id="btnTest2">test2</button>
 
         <div>
 
@@ -86,8 +91,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="box-body">
-                            <%--<uc1:UscSignUp runat="server" GroupName="advertiser" ID="UscSignUpAdvertiser" />--%>
-
+                            <uc1:UscSignUp runat="server" GroupName="advertiser" ID="UscSignUpAdvertiser" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -112,8 +116,7 @@
                     <div class="modal-body">
                         <div class="box-body">
 
-                            <%--<uc1:UscSignUp runat="server" GroupName="driver" ID="UscSignUp" />--%>
-
+                            <uc1:UscSignUp runat="server" GroupName="driver" ID="UscSignUpDriver" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -122,9 +125,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
 
         <div class="modal fade" id="modal_login" tabindex="-1" role="dialog">
@@ -141,7 +141,7 @@
                     <div class="modal-body">
                         <div class="box-body">
 
-                            <%--<uc1:LoginControl ID="LoginControl" runat="server" />--%>
+                            <uc1:LoginControl ID="LoginControl" runat="server" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -150,7 +150,6 @@
                 </div>
             </div>
         </div>
-
     </form>
 
 
@@ -170,10 +169,32 @@
             $("#modal_login").modal();
         });
 
+        //$('#btnTest').click(function () {
+        //    $('#divTest').show();
+        //    $('#divTest').fadeIn();
+
+        //    //$("#divTest").show();
+        //    //setTimeout(function () { $("#divTest").hide(); }, 5000);
+        //});
+
+        //$('#btnTest2').click(function () {
+        //    //$("#divTest").show();
+        //    //$('#divTest').fadeIn();
+        //    var win = $(window);
+        //    var dialog = $('#uscMessage2');
+        //    var top = (win.height()) / 2;
+
+        //    dialog.css('top', top - dialog.height());
+        //    dialog.addClass('alert-info');
+        //    $('#alertstruscMessage').text('salam');
+
+        //    dialog.show();
+        //    dialog.delay('slow');
+        //    //setTimeout(function () { dialog.hide(); }, 4000);
+        //    dialog.fadeOut('slow', 'linear');
+        //});
+
     </script>
-
-
-    </form>
 
 </body>
 </html>
