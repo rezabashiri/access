@@ -81,34 +81,38 @@ namespace AccessManagementService.Controls
 
             string email = txtEmail.Text.Trim();
 
-            var result = _user.UserSignUp(username, hashpass, email);
+            string roleName = GroupName + "-" + username;
+
+            var result = _user.UserSignUp(username, hashpass, email, roleName);
+
 
             if (result != null)
             {
-                if (result.Active == false)
+                if (result.Active == false || result.Role_Exist == false)
                 {
                     //go to oher page that show verificatino code
 
 
-                    if (result.Status > 0)
-                    {
-                        // user exist and not verification yet
-                        //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
-                        WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
-
-                    }
+                    //if (result.Status == 1 && result.Role_Exist == false)
+                    //{
+                    //    // user exist and not verification yet
+                    //    //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
+                    //    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
+                    //}
 
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
-
-
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#" + this.ClientID + " ').modal();", true);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer" + uscVerification.ClientID + "();", true);
 
 
-                    //string verificationCode  = _user.GenerateRandomNo().ToString();
                     string verificationCode = "1234";
 
+                    if (new tkv.Utility.WebConfigurationHelper().GetAppSettingValue("SendSMS") == "yes")
+                    {
+                        // verificationCode = _user.GenerateRandomNo().ToString();
+                        //uscVerification.sendSms(username, verificationCode);
+                    }
 
                     uscVerification.VerficationCode = verificationCode;
                     uscVerification.Username = username;
@@ -136,13 +140,6 @@ namespace AccessManagementService.Controls
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            MessageBoxSignup1.ShowMessage(Button1, "salam", WebUtility.Controls.MessageBox.MessageType.danger);
-            // WebUtility.Helpers.RegisterHelpers.RegisterScript(Button1, "alert", "showUscSignUpAdvertiser_MessageBoxSignup1('sa','info');", true);
 
         }
     }

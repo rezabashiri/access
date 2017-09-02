@@ -67,8 +67,7 @@ namespace AccessManagementService.Controls
             WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.css");
             WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.js");
             //WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(Default), "AccessManagementService.Resources.jquery-3.2.1.min.js");
-
-            WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
+                        WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
@@ -85,14 +84,15 @@ namespace AccessManagementService.Controls
                     {
                         OnVerificationComplete(Access.UserActiveStatus.Active);
                     }
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert(' با تشکر از ثبت نام شما ');", true);
-                    messageVerifiaction1.ShowMessage(btnOK,"با تشکر از ثبت نام شما", WebUtility.Controls.MessageBox.MessageType.success);
+
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert(' با تشکر از ثبت نام شما ');", true);
+                    //messageVerifiaction1.ShowMessage(btnOK,"با تشکر از ثبت نام شما", WebUtility.Controls.MessageBox.MessageType.success);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
                 }
                 else
                 {
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
-                    messageVerifiaction1.ShowMessage(btnOK,"متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
+                    //messageVerifiaction1.ShowMessage(btnOK,"متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
 
                     if (OnVerificationComplete != null)

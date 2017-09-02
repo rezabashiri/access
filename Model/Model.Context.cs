@@ -389,7 +389,7 @@ namespace AccessManagementService.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpActiveUserByUserName", userNameParameter, isActiveParameter, isConfirmParameter, groupNameParameter, orgRoleNameParameter, roleNameParameter);
         }
     
-        public virtual ObjectResult<sp_signup_insert_Result> sp_signup_insert(string firstName, string lastName, string userName, string password, string newPassword, Nullable<bool> isActive, Nullable<bool> isOnline, Nullable<bool> isConfirm, Nullable<System.DateTime> lastLoginTime, Nullable<bool> gender, Nullable<bool> marriedStatus, Nullable<System.DateTime> birthDate, Nullable<short> countryNo, Nullable<byte> languageNo, string address, string e_Mail, string photoPath, Nullable<System.DateTime> creationDate, Nullable<System.DateTime> editionDate, Nullable<System.DateTime> lastRefreshTime, Nullable<System.DateTime> lastChangePassDate, string nativeID, string personnelID, string activeSessionID, string systemProfile, string iPLocation, Nullable<int> departmentID, string phone, string mobile)
+        public virtual ObjectResult<sp_signup_insert_Result> sp_signup_insert(string firstName, string lastName, string userName, string password, string newPassword, Nullable<bool> isActive, Nullable<bool> isOnline, Nullable<bool> isConfirm, Nullable<System.DateTime> lastLoginTime, Nullable<bool> gender, Nullable<bool> marriedStatus, Nullable<System.DateTime> birthDate, Nullable<short> countryNo, Nullable<byte> languageNo, string address, string e_Mail, string photoPath, Nullable<System.DateTime> creationDate, Nullable<System.DateTime> editionDate, Nullable<System.DateTime> lastRefreshTime, Nullable<System.DateTime> lastChangePassDate, string nativeID, string personnelID, string activeSessionID, string systemProfile, string iPLocation, Nullable<int> departmentID, string phone, string mobile, string roleName)
         {
             var firstNameParameter = firstName != null ?
                 new ObjectParameter("FirstName", firstName) :
@@ -507,7 +507,11 @@ namespace AccessManagementService.Model
                 new ObjectParameter("Mobile", mobile) :
                 new ObjectParameter("Mobile", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_signup_insert_Result>("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter);
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_signup_insert_Result>("sp_signup_insert", firstNameParameter, lastNameParameter, userNameParameter, passwordParameter, newPasswordParameter, isActiveParameter, isOnlineParameter, isConfirmParameter, lastLoginTimeParameter, genderParameter, marriedStatusParameter, birthDateParameter, countryNoParameter, languageNoParameter, addressParameter, e_MailParameter, photoPathParameter, creationDateParameter, editionDateParameter, lastRefreshTimeParameter, lastChangePassDateParameter, nativeIDParameter, personnelIDParameter, activeSessionIDParameter, systemProfileParameter, iPLocationParameter, departmentIDParameter, phoneParameter, mobileParameter, roleNameParameter);
         }
     }
 }

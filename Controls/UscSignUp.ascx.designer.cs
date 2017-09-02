@@ -112,15 +112,6 @@ namespace AccessManagementService.Controls {
         protected global::WebUtility.Controls.MoroorgaranButton btnSignUp;
         
         /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
         /// pnlValidation control.
         /// </summary>
         /// <remarks>
