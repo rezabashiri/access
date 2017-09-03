@@ -50,10 +50,10 @@
                     </div>
                 </section>
                 <section>
-             <%--       <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
+                    <telerik:RadCaptcha ID="captcha" runat="server" CssClass="captcha-imag" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">
                         <CaptchaImage FontWarp="High" ImageCssClass="captcha-image" TextChars="LettersAndNumbers" />
                         <TextBoxLabelDecoration />
-                    </telerik:RadCaptcha>--%>
+                    </telerik:RadCaptcha> 
                 </section>
                 <section>
                     <label class="checkbox">
