@@ -10,13 +10,13 @@ namespace AccessManagementService.Classes
     {
         AccessEntities DB = new AccessEntities();
 
-        public sp_signup_insert_Result UserSignUp(User user)
+        public sp_signup_insert_Result UserSignUp(User user, string roleName)
         {
-            var res = DB.sp_signup_insert(user.FirstName, user.LastName, user.UserName, user.Password, user.NewPassword, user.IsActive, user.IsOnline, user.IsConfirm, user.LastLoginTime, user.Gender, user.MarriedStatus, user.BirthDate, user.CountryNo, user.LanguageNo, user.Address, user.E_Mail, user.PhotoPath, user.CreationDate, user.EditionDate, user.LastRefreshTime, user.LastChangePassDate, user.NativeID, user.PersonnelID, user.ActiveSessionID, user.SystemProfile, user.IPLocation, user.DepartmentID, user.Phone, user.Mobile).FirstOrDefault();
+            var res = DB.sp_signup_insert(user.FirstName, user.LastName, user.UserName, user.Password, user.NewPassword, user.IsActive, user.IsOnline, user.IsConfirm, user.LastLoginTime, user.Gender, user.MarriedStatus, user.BirthDate, user.CountryNo, user.LanguageNo, user.Address, user.E_Mail, user.PhotoPath, user.CreationDate, user.EditionDate, user.LastRefreshTime, user.LastChangePassDate, user.NativeID, user.PersonnelID, user.ActiveSessionID, user.SystemProfile, user.IPLocation, user.DepartmentID, user.Phone, user.Mobile, roleName).FirstOrDefault();
 
             return res;
         }
-        public sp_signup_insert_Result UserSignUp(string username, string pass, string email)
+        public sp_signup_insert_Result UserSignUp(string username, string pass, string email, string roleName)
         {
             User u = new User();
             u.UserName = username;
@@ -24,8 +24,9 @@ namespace AccessManagementService.Classes
             u.E_Mail = email;
             u.IsActive = false;
             u.IsOnline = false;
+            u.IPLocation = tkv.Utility.WebHelpers.UserIPAddress;
 
-            return UserSignUp(u);
+            return UserSignUp(u, roleName);
         }
         //public int select(string username)
         //{
@@ -64,9 +65,10 @@ namespace AccessManagementService.Classes
         //    return result;
         //}
 
-        public void activeUsers(string userName)
+        public void activeUsers(string userName, string groupName)
         {
-            DB.SpActiveUserByUserName(userName, true);
+            string roleName = groupName + "-" + userName;
+            DB.SpActiveUserByUserName(userName, true, true, groupName, groupName, roleName);
         }
 
         public int GenerateRandomNo()

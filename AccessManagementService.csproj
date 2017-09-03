@@ -109,8 +109,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\component\Utility\bin\Release\tkvUtility.dll</HintPath>
     </Reference>
-    <Reference Include="WebUtilityv2">
-      <HintPath>..\..\WebUtility_v2\bin\WebUtilityv2.dll</HintPath>
+    <Reference Include="WebUtilityv2, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\WebUtilityv2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +123,7 @@
     <Content Include="Controls\UscRoleSelect.ascx" />
     <Content Include="Controls\UscSignUp.ascx" />
     <Content Include="Controls\UscVerification.ascx" />
+    <Content Include="WebForm1.aspx" />
     <EmbeddedResource Include="Resources\flipclock.css" />
     <EmbeddedResource Include="Resources\flipclock.js" />
     <EmbeddedResource Include="Resources\customStylesheet.css" />
@@ -130,6 +132,16 @@
     <Content Include="DynamicData\FieldTemplates\DepartmentChart_Edit.ascx" />
     <EmbeddedResource Include="Resources\loadingAnimation.gif" />
     <EmbeddedResource Include="Resources\jquery-3.2.1.min.js" />
+    <Content Include="Model\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Resources\bootstrap.min.js" />
     <Content Include="Resources\jquery-1.10.2.min.js" />
     <Content Include="Resources\jquery-1.11.0.js" />
@@ -274,26 +286,23 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <EntityDeploy Include="Model\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model\Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Model\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Model\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
-    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\acc.pubxml" />
     <None Include="Properties\PublishProfiles\access.pubxml" />
     <None Include="Properties\PublishProfiles\AccessManagement.pubxml" />

@@ -13,9 +13,7 @@ namespace AccessManagementService.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-             
-
-            var img = UpdateProgress1.FindControl("imgLoad") as Image;
+            var img = updateprogress1.FindControl("imgLoad") as Image;
             if (img != null)
                 img.ImageUrl = new tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page, typeof(AccessManagementService.Controls.LoginControl), "AccessManagementService.Resources.loadingAnimation.gif");
         }
@@ -36,8 +34,8 @@ namespace AccessManagementService.Controls
         public event Logins OnLoggedIn;
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (!Page.IsValid)
-                return;
+            //if (!Page.IsValid)
+            //    return;
 
             lblMessage.Visible = false;
 

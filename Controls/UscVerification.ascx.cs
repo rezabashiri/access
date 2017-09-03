@@ -16,32 +16,58 @@ namespace AccessManagementService.Controls
         public event Verify OnVerificationComplete;
         public string VerficationCode
         {
-            get; set;
+            get
+            {
+                if (ViewState["__VerficationCode"] != null)
+                {
+                    return ViewState["__VerficationCode"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__VerficationCode"] = value;
+            }
         }
 
         public string Username
         {
-            get; set;
+            get
+            {
+                if (ViewState["__Username"] != null)
+                {
+                    return ViewState["__Username"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__Username"] = value;
+            }
         }
+
+        public string GroupName
+        {
+            get
+            {
+                if (ViewState["__GroupName"] != null)
+                {
+                    return ViewState["__GroupName"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__GroupName"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.css");
             WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.js");
             //WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(Default), "AccessManagementService.Resources.jquery-3.2.1.min.js");
-
-            WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
-
-
-            if (Session["VerficationCode"] != null)
-            {
-                VerficationCode = Session["VerficationCode"].ToString();
-            }
-
-            if (Session["username"] != null)
-            {
-                Username = Session["username"].ToString();
-            }
-
+                        WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
@@ -51,19 +77,22 @@ namespace AccessManagementService.Controls
                 if (txtverificationCode.Text == VerficationCode)
                 {
                     signUp su = new Classes.signUp();
-                    su.activeUsers(Username);
+                    su.activeUsers(Username, GroupName);
 
 
                     if (OnVerificationComplete != null)
                     {
                         OnVerificationComplete(Access.UserActiveStatus.Active);
                     }
+
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert(' با تشکر از ثبت نام شما ');", true);
+                    //messageVerifiaction1.ShowMessage(btnOK,"با تشکر از ثبت نام شما", WebUtility.Controls.MessageBox.MessageType.success);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
                 }
                 else
                 {
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
+                    //messageVerifiaction1.ShowMessage(btnOK,"متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
 
                     if (OnVerificationComplete != null)

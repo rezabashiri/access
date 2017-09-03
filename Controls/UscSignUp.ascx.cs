@@ -13,8 +13,17 @@ namespace AccessManagementService.Controls
 {
     public partial class UscSignUp : System.Web.UI.UserControl
     {
-        //WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
-
+        public string GroupName
+        {
+            get
+            {
+                return uscVerification.GroupName;
+            }
+            set
+            {
+                uscVerification.GroupName = value;
+            }
+        }
 
 
         public event Helpers.SMS.SendSms OnSendVerificationCode;
@@ -34,7 +43,7 @@ namespace AccessManagementService.Controls
 
         private void UscVerification_OnVerificationComplete(Access.UserActiveStatus status)
         {
-             if (OnVerificationComplete != null)
+            if (OnVerificationComplete != null)
             {
                 OnVerificationComplete(status);
             }
@@ -42,8 +51,9 @@ namespace AccessManagementService.Controls
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            if (!Page.IsValid)
-                return;
+
+            //if (!Page.IsValid)
+            //    return;
 
             lblMessage.Visible = false;
 
@@ -71,33 +81,43 @@ namespace AccessManagementService.Controls
 
             string email = txtEmail.Text.Trim();
 
-            var result = _user.UserSignUp(username, hashpass, email);
+            string roleName = GroupName + "-" + username;
+
+            var result = _user.UserSignUp(username, hashpass, email, roleName);
+
 
             if (result != null)
             {
-                if (result.Active == false)
+                if (result.Active == false || result.Status == 2)
                 {
                     //go to oher page that show verificatino code
-
-
-
-                    //Session["verificationCode"] = _user.GenerateRandomNo();
+                     //role exists and user exists but user not active
+                    if (result.Status == 1 )
+                    {
+                        // user exist and not verification yet
+                        //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
+                        WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
+                    }
 
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('hide');", true);
+                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#" + this.ClientID + " ').modal();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer" + uscVerification.ClientID + "();", true);
 
 
-
-
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#myModal').modal();", true);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer();", true);
-
-
-                    //string verificationCode  = _user.GenerateRandomNo().ToString();
                     string verificationCode = "1234";
 
-                    Session["VerficationCode"] = verificationCode;
-                    Session["username"] = username;        
+                    if (new tkv.Utility.WebConfigurationHelper().GetAppSettingValue("SendSMS") == "yes")
+                    {
+                        // verificationCode = _user.GenerateRandomNo().ToString();
+                        //uscVerification.sendSms(username, verificationCode);
+                    }
+
+                    uscVerification.VerficationCode = verificationCode;
+                    uscVerification.Username = username;
+
+                    //Session["VerficationCode"] = verificationCode;
+                    //Session["username"] = username;
 
                     //string script = @" $('#" + btnSignUp.ClientID + "').on('click', function (evt) {$('form').validationEngine('detach');});";
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "detach", script, true);
@@ -106,8 +126,9 @@ namespace AccessManagementService.Controls
                 {
                     //go to login page
 
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert(' شما قبلا با موفقیت ثبت نام کرده اید ');", true);
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
+                    //MessageBoxSignup1.ShowMessage(btnSignUp, "لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ", WebUtility.Controls.MessageBox.MessageType.danger);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('لطفا از قسمت ورود استفاده نمائید. شما قبلا با موفقیت ثبت نام کرده اید ');", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal_hide", "$('.modal').modal('hide');", true);
                 }
             }
         }

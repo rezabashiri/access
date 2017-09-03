@@ -18,18 +18,18 @@ namespace AccessManagementService.Helpers
         }
         public long MessageID
         {
-            get;set;
+            get; set;
         }
         public bool IsDelivered
         {
-            get;set;
+            get; set;
         }
 
     }
     public class SMS
     {
         public delegate void SendSms(VerificationStatus Status);
-        
+
         private string apikey = "517A737A6D465A692F3569484E6C53545033426975513D3D";
 
         public string ApiKey
@@ -50,14 +50,14 @@ namespace AccessManagementService.Helpers
 
         public VerificationStatus SendToANumber(string receptor, string code)
         {
-            string text = string.Format("با سلام \n کد ارسالی شما {0} می باشد.", code);
+            string text = string.Format("جهت ادامه کد {0} را در 'وایرال_می' وارد نمائید", code);
 
             VerificationStatus sm = new Helpers.VerificationStatus();
 
             try
             {
                 Kavenegar.KavenegarApi api = new Kavenegar.KavenegarApi(ApiKey);
-        
+
                 var result = api.Send(SenderLine, receptor, text);
 
                 if (result.Status != 200)
@@ -72,7 +72,7 @@ namespace AccessManagementService.Helpers
                 {
                     sm.IsDelivered = true;
                 }
-                
+
                 sm.StatusCode = smsStatus.Status.ToString();
                 sm.Message = smsStatus.Statustext;
                 sm.MessageID = smsStatus.Messageid;
