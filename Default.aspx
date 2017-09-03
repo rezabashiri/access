@@ -40,11 +40,11 @@
 
   
 
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+       <%-- <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button2" />
 
         <button id="btnTest">test</button>
-        <button id="btnTest2">test2</button>
+        <button id="btnTest2">test2</button>--%>
 
         <div>
 

@@ -88,17 +88,16 @@ namespace AccessManagementService.Controls
 
             if (result != null)
             {
-                if (result.Active == false || result.Role_Exist == false)
+                if (result.Active == false || result.Status == 2)
                 {
                     //go to oher page that show verificatino code
-
-
-                    //if (result.Status == 1 && result.Role_Exist == false)
-                    //{
-                    //    // user exist and not verification yet
-                    //    //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
-                    //    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
-                    //}
+                     //role exists and user exists but user not active
+                    if (result.Status == 1 )
+                    {
+                        // user exist and not verification yet
+                        //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
+                        WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert_exist", "alert('شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید');", true);
+                    }
 
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
