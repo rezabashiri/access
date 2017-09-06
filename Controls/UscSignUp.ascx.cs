@@ -52,13 +52,15 @@ namespace AccessManagementService.Controls
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
 
-            //if (!Page.IsValid)
-            //    return;
+            if (!captcha.IsValid)
+                return;
 
+            
             lblMessage.Visible = false;
 
             HashHelpers hash = new HashHelpers();
             signUp _user = new signUp();
+
 
 
             string message = string.Empty;
@@ -101,7 +103,7 @@ namespace AccessManagementService.Controls
 
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal_signUp').modal('hide');", true);
                     //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "alert", "alert('salam');", true);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#" + this.ClientID + " ').modal();", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "modal", "$('#modal" + uscVerification.ModalId + " ').modal();", true);
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "time", "timer" + uscVerification.ClientID + "();", true);
 
 
@@ -109,18 +111,16 @@ namespace AccessManagementService.Controls
 
                     if (new tkv.Utility.WebConfigurationHelper().GetAppSettingValue("SendSMS") == "yes")
                     {
-                        // verificationCode = _user.GenerateRandomNo().ToString();
-                        //uscVerification.sendSms(username, verificationCode);
+                        verificationCode = _user.GenerateRandomNo().ToString();
+                        uscVerification.sendSms(username, verificationCode);
                     }
 
                     uscVerification.VerficationCode = verificationCode;
                     uscVerification.Username = username;
 
-                    //Session["VerficationCode"] = verificationCode;
-                    //Session["username"] = username;
+               
 
-                    //string script = @" $('#" + btnSignUp.ClientID + "').on('click', function (evt) {$('form').validationEngine('detach');});";
-                    //WebUtility.Helpers.RegisterHelpers.RegisterScript(btnSignUp, "detach", script, true);
+    
                 }
                 else
                 {

@@ -14,6 +14,13 @@ namespace AccessManagementService.Controls
     {
         public delegate void Verify(AccessManagementService.Access.UserActiveStatus status);
         public event Verify OnVerificationComplete;
+        public string ModalId
+        {
+            get
+            {
+                return "modal" + this.ClientID;
+            }
+        }
         public string VerficationCode
         {
             get
@@ -66,20 +73,17 @@ namespace AccessManagementService.Controls
         {
             WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.css");
             WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(UscVerification), "AccessManagementService.Resources.flipclock.js");
-            //WebUtility.Helpers.RegisterHelpers.RegisterResourceJS(this, typeof(Default), "AccessManagementService.Resources.jquery-3.2.1.min.js");
-                        WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
+            WebUtility.Helpers.RegisterHelpers.RegisterCSS(this, typeof(UscVerification), "AccessManagementService.Resources.customStylesheet.css");
         }
 
         protected void btnOK_Click(object sender, EventArgs e)
         {
-            if (VerficationCode != null)
+            if (!string.IsNullOrEmpty(VerficationCode))
             {
                 if (txtverificationCode.Text == VerficationCode)
                 {
                     signUp su = new Classes.signUp();
                     su.activeUsers(Username, GroupName);
-
-
                     if (OnVerificationComplete != null)
                     {
                         OnVerificationComplete(Access.UserActiveStatus.Active);
@@ -93,7 +97,7 @@ namespace AccessManagementService.Controls
                 {
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
                     //messageVerifiaction1.ShowMessage(btnOK,"متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('.modal').modal('hide');", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('#"+ModalId+"').modal('hide');", true);
 
                     if (OnVerificationComplete != null)
                     {

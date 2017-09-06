@@ -34,9 +34,9 @@ namespace AccessManagementService.Controls
         public event Logins OnLoggedIn;
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            //if (!Page.IsValid)
-            //    return;
-
+            if (!captcha.IsValid)
+                return;
+             
             lblMessage.Visible = false;
 
             HashHelpers hash = new HashHelpers();
@@ -67,6 +67,7 @@ namespace AccessManagementService.Controls
             Access.Login newlogin = new Access.Login();
             User _logedin = newlogin.LoginUser(result, username, chkRemember.Checked);
             Access.AccessControl.SetUser(_logedin);
+            if (OnLoggedIn != null)
             OnLoggedIn(_logedin);
 
         }

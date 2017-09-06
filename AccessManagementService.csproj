@@ -111,7 +111,7 @@
     </Reference>
     <Reference Include="WebUtilityv2, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\WebUtilityv2.dll</HintPath>
+      <HintPath>..\..\..\component\WebUtility_v2\bin\WebUtilityv2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

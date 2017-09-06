@@ -909,7 +909,6 @@
           <Property Type="Int32" Name="UserId" Nullable="true" />
           <Property Type="Boolean" Name="Active" Nullable="true" />
           <Property Type="Int32" Name="Status" Nullable="true" />
-          <Property Type="Boolean" Name="Role_Exist" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1116,7 +1115,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Role_Exist" ColumnName="Role_Exist" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
