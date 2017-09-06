@@ -1,12 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginControl.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.Login" Inherits="AccessManagementService.Controls.LoginControl" %>
+
 <link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(LoginControl),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
-<asp:UpdateProgress id="updateprogress1" associatedupdatepanelid="updatepnl1" runat="server">
+<asp:UpdateProgress id="updateprogress1"  associatedupdatepanelid="updatepnl1" runat="server">
     <progresstemplate>
         <div class="col-sm-4"></div>
         <div class="col-sm-8 text-center" style="margin-bottom: 15px">
 
-            <asp:image id="imgload" runat="server" />
+            <asp:image id="imgload"   runat="server" />
         </div>
     </progresstemplate>
 </asp:UpdateProgress>
@@ -21,7 +22,7 @@
             </div>
 
         </div>
-        <div class="smart-form client-form right">
+        <div class="smart-form client-form">
             <header>
                 ورود به سامانه 
             </header>

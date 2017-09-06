@@ -68,6 +68,21 @@ namespace AccessManagementService.Controls
                 ViewState["__GroupName"] = value;
             }
         }
+        public string OrganizationRoleName
+        {
+            get
+            {
+                if (ViewState["__OrganizationRoleName"] != null)
+                {
+                    return ViewState["__OrganizationRoleName"].ToString();
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["__OrganizationRoleName"] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -83,7 +98,7 @@ namespace AccessManagementService.Controls
                 if (txtverificationCode.Text == VerficationCode)
                 {
                     signUp su = new Classes.signUp();
-                    su.activeUsers(Username, GroupName);
+                    su.activeUsers(Username, GroupName,OrganizationRoleName);
                     if (OnVerificationComplete != null)
                     {
                         OnVerificationComplete(Access.UserActiveStatus.Active);

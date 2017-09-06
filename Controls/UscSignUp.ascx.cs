@@ -24,7 +24,17 @@ namespace AccessManagementService.Controls
                 uscVerification.GroupName = value;
             }
         }
-
+        public string OrganizationRole
+        {
+            get
+            {
+                return uscVerification.OrganizationRoleName;
+            }
+            set
+            {
+                uscVerification.OrganizationRoleName = value;
+            }
+        }
 
         public event Helpers.SMS.SendSms OnSendVerificationCode;
         public event UscVerification.Verify OnVerificationComplete;

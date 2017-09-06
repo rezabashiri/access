@@ -13,9 +13,11 @@ namespace AccessManagementService.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             var img = updateprogress1.FindControl("imgLoad") as Image;
             if (img != null)
                 img.ImageUrl = new tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page, typeof(AccessManagementService.Controls.LoginControl), "AccessManagementService.Resources.loadingAnimation.gif");
+
         }
         public Button LoginButton
         {
@@ -36,7 +38,7 @@ namespace AccessManagementService.Controls
         {
             if (!captcha.IsValid)
                 return;
-             
+
             lblMessage.Visible = false;
 
             HashHelpers hash = new HashHelpers();
@@ -68,7 +70,7 @@ namespace AccessManagementService.Controls
             User _logedin = newlogin.LoginUser(result, username, chkRemember.Checked);
             Access.AccessControl.SetUser(_logedin);
             if (OnLoggedIn != null)
-            OnLoggedIn(_logedin);
+                OnLoggedIn(_logedin);
 
         }
     }
