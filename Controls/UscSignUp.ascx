@@ -1,21 +1,20 @@
 ﻿<%@ Control Language="C#" ValidateRequestMode="Enabled" AutoEventWireup="true" CodeBehind="UscSignUp.ascx.cs" Debug="false" ClassName="AccessManagementService.Controls.SignUp" Inherits="AccessManagementService.Controls.UscSignUp" %>
 <%@ Register TagPrefix="uc1" Assembly="WebUtilityv2" Namespace="WebUtility.Controls" %>
 <%@ Register Src="~/Controls/UscVerification.ascx" TagPrefix="uc1" TagName="UscVerification" %>
- 
 
- 
+
+
 
 <link href="<%= new global::tkv.Utility.ResourceHelpers().GetWebResourceUrl(this.Page,typeof(UscSignUp),"AccessManagementService.Resources.customStylesheet.css") %>" rel="stylesheet" />
 
 <uc1:LoadMoroorgaranControls ID="load" runat="server" LoadValidationScripts="true" LoadValidationStyle="true"></uc1:LoadMoroorgaranControls>
 
-<uc1:MessageBox ID="MessageBoxSignup1" runat="server"></uc1:MessageBox>
 
 
 
 <asp:UpdatePanel runat="server" ID="UpdatePnl_signUp" UpdateMode="Conditional" ValidateRequestMode="Enabled">
     <ContentTemplate>
-       
+
 
         <asp:Panel ID="pnlsignUp" Visible="true" runat="server">
 
@@ -26,9 +25,9 @@
 
             </div>
             <div class="smart-form client-form">
-             <header>
-               عضویت در سامانه 
-            </header>
+                <header>
+                    عضویت در سامانه 
+                </header>
 
                 <fieldset>
 
@@ -62,8 +61,23 @@
                         <label class="input">
                             <i class="icon-append fa fa-user"></i>
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
-                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>لطفا ایمیل خود را وارد نمائید</b></label>
+                            <b class="tooltip tooltip-top-rstight"><i class="fa fa-user txt-color-teal"></i>لطفا ایمیل خود را وارد نمائید</b></label>
                     </section>
+
+
+                    <section id="SectionRoleGroup" runat="server">
+                     
+                        <div  class="col-md-3">گروه ثبت نامی</div>
+                        <div class="col-md-3">
+                        <telerik:RadComboBox DataTextField="GroupName" Skin="Web20" Filter="Contains" AppendDataBoundItems="true" DataValueField="ID" SelectMethod="Group_Get" ID="cmbRoleGroup" runat="server" CssClass="right">
+                            <Items>
+                                <telerik:RadComboBoxItem Text="انتخاب کنید" Value="" />
+                            </Items>
+                        </telerik:RadComboBox>
+                        </div>
+                           
+                    </section>
+
 
                     <section>
                         <telerik:RadCaptcha CssClass="right" ID="captcha" runat="server" CaptchaTextBoxLabel="مقادیر روبرو را تایپ نمایید" ErrorMessage="کد کپچا را به صورت صحیح وارد نمایید" ValidationGroup="aut" ProtectionMode="Captcha">

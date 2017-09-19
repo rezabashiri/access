@@ -40,15 +40,6 @@ namespace AccessManagementService {
         protected global::AccessManagementService.Controls.UscSignUp UscSignUpAdvertiser;
         
         /// <summary>
-        /// UscSignUpDriver control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AccessManagementService.Controls.UscSignUp UscSignUpDriver;
-        
-        /// <summary>
         /// LoginControl control.
         /// </summary>
         /// <remarks>

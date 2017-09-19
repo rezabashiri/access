@@ -8,12 +8,36 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using tkv.Utility;
 
-
 namespace AccessManagementService.Controls
 {
     public partial class UscSignUp : System.Web.UI.UserControl
     {
-        public string GroupName
+
+        public List<Group> Group_Get()
+        {
+            AccessManagementService.Model.Group g = new Model.Group();
+            return g.ListOfGroup();
+
+        }
+        private int GroupId
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(cmbRoleGroup.SelectedValue))
+                {
+                    return cmbRoleGroup.SelectedValue.ToInt32();
+                }
+                return -1;
+            }
+        }
+
+
+        public bool ISLoadGroup
+        {
+            get; set;
+        }
+
+        private string GroupName
         {
             get
             {
@@ -49,6 +73,14 @@ namespace AccessManagementService.Controls
                 uscVerification.OnSend += UscVerification_OnSend;
                 uscVerification.OnVerificationComplete += UscVerification_OnVerificationComplete;
             }
+            if (ISLoadGroup == false)
+            {
+                SectionRoleGroup.Visible = false;
+            }
+            else
+            {
+                SectionRoleGroup.Visible = true;
+            }
         }
 
         private void UscVerification_OnVerificationComplete(Access.UserActiveStatus status)
@@ -61,16 +93,11 @@ namespace AccessManagementService.Controls
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-
             if (!captcha.IsValid)
                 return;
 
-            
-            lblMessage.Visible = false;
-
             HashHelpers hash = new HashHelpers();
             signUp _user = new signUp();
-
 
 
             string message = string.Empty;
@@ -91,6 +118,11 @@ namespace AccessManagementService.Controls
             string password = txtPassword.Text.Trim();
             string hashpass = hash.Encrypt(password);
 
+            if (!string.IsNullOrEmpty(cmbRoleGroup.SelectedValue))
+            {
+                GroupName = cmbRoleGroup.Text.ToString();
+            }
+
             string email = txtEmail.Text.Trim();
 
             string roleName = GroupName + "-" + username;
@@ -103,8 +135,8 @@ namespace AccessManagementService.Controls
                 if (result.Active == false || result.Status == 2)
                 {
                     //go to oher page that show verificatino code
-                     //role exists and user exists but user not active
-                    if (result.Status == 1 )
+                    //role exists and user exists but user not active
+                    if (result.Status == 1)
                     {
                         // user exist and not verification yet
                         //MessageBoxSignup1.ShowMessage(btnSignUp, "شما قبلا اقدام به ثبت نام کرده اید ولی هنوز کد  تایید را ارسال ننمودید \n لطفا با اطلاعات قبلی وارد شوید", WebUtility.Controls.MessageBox.MessageType.info);
@@ -127,10 +159,6 @@ namespace AccessManagementService.Controls
 
                     uscVerification.VerficationCode = verificationCode;
                     uscVerification.Username = username;
-
-               
-
-    
                 }
                 else
                 {

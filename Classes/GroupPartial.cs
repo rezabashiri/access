@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AccessManagementService.Model
 {
     [MetadataType(typeof(MetaData))]
-    
+
 
     [System.ComponentModel.DisplayName("گروه های کاربری")]
     public partial class Group
@@ -14,21 +14,21 @@ namespace AccessManagementService.Model
         private class MetaData
         {
             public int ID { get; set; }
-            [Display(Name="نام گروه")]
+            [Display(Name = "نام گروه")]
             public string GroupName { get; set; }
-            [Display(AutoGenerateField=false)]
+            [Display(AutoGenerateField = false)]
             [System.ComponentModel.DefaultValue(null)]
 
 
             public Nullable<System.DateTime> CreationDate { get; set; }
-            [Display (Name="از تمام مکانها اجازه دسترسی داشته باشد؟")]
+            [Display(Name = "از تمام مکانها اجازه دسترسی داشته باشد؟")]
             public bool AllLocationAccess { get; set; }
-            [Display (Name="در تمام زمانها اجازه دسترسی داشته باشد")]
+            [Display(Name = "در تمام زمانها اجازه دسترسی داشته باشد")]
             public bool AllTimesAccess { get; set; }
-            [Display (Name="تاریخ انقضا")]
+            [Display(Name = "تاریخ انقضا")]
             [UIHint("PersianDate")]
             public Nullable<System.DateTime> ExpirationDate { get; set; }
-            [Display(Name="شنبه")]
+            [Display(Name = "شنبه")]
             public Nullable<int> Saturday { get; set; }
             [Display(Name = "یک شنبه")]
             public Nullable<int> Sunday { get; set; }
@@ -51,6 +51,15 @@ namespace AccessManagementService.Model
 
             public virtual ICollection<Role> Roles { get; set; }
         }
-        
+
+        public List<Group> ListOfGroup()
+        {
+            using (AccessEntities myen = new AccessEntities())
+            {
+                var query = myen.Database.SqlQuery<Group>("select * from [asc].[Group]");
+                return query.ToList();
+            }
+        }
+
     }
 }
