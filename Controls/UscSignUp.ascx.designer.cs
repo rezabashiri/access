@@ -22,15 +22,6 @@ namespace AccessManagementService.Controls {
         protected global::WebUtility.Controls.LoadMoroorgaranControls load;
         
         /// <summary>
-        /// MessageBoxSignup1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebUtility.Controls.MessageBox MessageBoxSignup1;
-        
-        /// <summary>
         /// UpdatePnl_signUp control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,24 @@ namespace AccessManagementService.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// SectionRoleGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SectionRoleGroup;
+        
+        /// <summary>
+        /// cmbRoleGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox cmbRoleGroup;
         
         /// <summary>
         /// captcha control.

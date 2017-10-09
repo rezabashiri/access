@@ -55,6 +55,7 @@ An error occurred while executing the command definition. See the inner exceptio
 6/15/1396 12:00:00 AM
 
 _______________________________________
+<<<<<<< HEAD
 Invalid JSON primitive: .
 7/15/1396 12:00:00 AM
 
@@ -73,4 +74,8 @@ Returned [5] Message:[ارسال به مخابرات]
 _______________________________________
 ارسال به مخابرات
 7/15/1396 12:00:00 AM
+=======
+An error occurred while executing the command definition. See the inner exception for details.
+6/27/1396 12:00:00 AM
+>>>>>>> a1a531d94f66bc37367a739136d86923e6e181f0
 

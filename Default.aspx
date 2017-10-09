@@ -38,9 +38,10 @@
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
         </telerik:RadScriptManager>
 
-  
 
-       <%-- <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+
+
+        <%-- <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button2" />
 
         <button id="btnTest">test</button>
@@ -91,7 +92,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="box-body">
-                            <uc1:UscSignUp runat="server" GroupName="advertiser" ID="UscSignUpAdvertiser" />
+                            <uc1:UscSignUp runat="server" ISLoadGroup="true" ID="UscSignUpAdvertiser" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -115,8 +116,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="box-body">
-
-                            <uc1:UscSignUp runat="server" GroupName="driver" ID="UscSignUpDriver" />
+                            <%--<uc1:UscSignUp runat="server" GroupName="driver" ISLoadGroup="true" ID="UscSignUpDriver" />--%>
                         </div>
                     </div>
                     <div class="modal-footer">

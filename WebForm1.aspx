@@ -6,44 +6,50 @@
 <head runat="server">
     <title></title>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        $(document).ready(function () {
-            var row = "";
+</head>
+<body>
+    <table id="tbDetails">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Mobile</td>
+            <td>Location</td>
+        </tr>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <script>
+
+        function BindTable() {
+
             $.ajax({
                 type: "POST",
-                url: "test4.aspx/GetDetails",
+                url: "WebService1.asmx/bindtable",
                 data: "{}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    $.each(msg.d, function (index, obj) {
-                        row += "<tr><td>" + obj.productcode + "</td><td>" + obj.productname + "</td><td>" + obj.costprice + "</td></tr>";
-
+                    var json = JSON.parse(msg.d);
+                    $.each(json, function (index, obj) {
+                        var row = '<tr><td> ' + obj.pid + ' </td> <td> ' + obj.p_name + ' </td> <td>' + obj.p_mobile + '</td> <td>' + obj.p_location + '</td> </tr>'
+                        $("#tbDetails tbody").append(row);
                     });
-
-                    $("#tbDetails tbody").append(row);
                 }
             });
+
+        }
+
+
+        $(document).ready(function () {
+            BindTable();
         });
     </script>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
 
-            <input id="Button1" type="button" value="button" />
-            <table id="tbDetails" width="800" runat="server" clientidmode="Static">
-                <tbody>
-                    <tr>
-                        <td>productcode</td>
-                        <td>productname</td>
-                        <td>costprice</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </form>
 </body>
 </html>

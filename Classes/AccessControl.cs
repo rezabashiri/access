@@ -33,8 +33,8 @@ namespace AccessManagementService.Access
                 User _user = HttpContext.Current.Session[UserSesion] as User;
                 if (_user == null)
                 {
-                    new Login().RemoveSessions();
-                    
+                    //new Login().RemoveSessions();
+                    new User();
                 }
                 return _user ;
             }
