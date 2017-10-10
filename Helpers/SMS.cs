@@ -50,7 +50,7 @@ namespace AccessManagementService.Helpers
 
         public VerificationStatus SendToANumber(string receptor, string code)
         {
-            string text = string.Format("خوش آمدید:جهت تکمیل فرآیند،کد {0} را  وارد نمائید", code);
+            string text = string.Format("خوش آمدید:جهت تکمیل فرآیند،کد {0} را وارد نمائید", code);
 
             VerificationStatus sm = new Helpers.VerificationStatus();
 
