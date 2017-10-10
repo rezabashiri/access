@@ -50,7 +50,9 @@ namespace AccessManagementService.Helpers
 
         public VerificationStatus SendToANumber(string receptor, string code)
         {
-            string text = string.Format("خوش آمدید:جهت تکمیل فرآیند،کد {0} را وارد نمائید", code);
+
+            string text = string.Format("خوش آمدید:جهت تکمیل فرآیند،کد {0} را  وارد نمائید", code);
+           
 
             VerificationStatus sm = new Helpers.VerificationStatus();
 
@@ -58,7 +60,7 @@ namespace AccessManagementService.Helpers
             {
                 Kavenegar.KavenegarApi api = new Kavenegar.KavenegarApi(ApiKey);
 
-                var result = api.Send(SenderLine, receptor, text);
+                var result = api.VerifyLookup(receptor, code, "verify",Kavenegar.Models.Enums.VerifyLookupType.Sms);
 
                 if (result.Status != 200)
                 {

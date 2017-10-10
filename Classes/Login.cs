@@ -36,8 +36,8 @@ namespace AccessManagementService.Access
             {
                 myen.DoLogin(UserId, tkv.Utility.WebHelpers.UserIPAddress, tkv.Utility.WebHelpers.UserSessionId);
             }
-            string roles=user.GetRolesOfUser( UserId,true);
-            user = user.GetUserById(UserId,new [] {"Department"});
+            string roles=user.GetRolesOfUser( UserId,true); 
+            user = user.GetUserById(UserId,new [] {"Department","Roles"});
             user.UserRoles = roles;
             
 
