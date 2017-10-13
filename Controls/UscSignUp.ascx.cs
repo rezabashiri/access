@@ -60,7 +60,7 @@ namespace AccessManagementService.Controls
             }
         }
 
-        public event Helpers.SMS.SendSms OnSendVerificationCode;
+        public event WebUtility.Helpers.SendSMS.SendSms OnSendVerificationCode;
         public event UscVerification.Verify OnVerificationComplete;
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -170,7 +170,7 @@ namespace AccessManagementService.Controls
                 }
             }
         }
-        private void UscVerification_OnSend(Helpers.VerificationStatus Status)
+        private void UscVerification_OnSend(WebUtility.Helpers.VerificationStatus Status)
         {
             if (OnSendVerificationCode != null)
                 OnSendVerificationCode(Status);
