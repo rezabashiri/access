@@ -15,9 +15,12 @@ namespace AccessManagementService.Controls
 
         public List<Group> Group_Get()
         {
-            AccessManagementService.Model.Group g = new Model.Group();
-            return g.ListOfGroup();
-
+            if (ISLoadGroup)
+            {
+                AccessManagementService.Model.Group g = new Model.Group();
+                return g.ListOfGroup();
+            }
+            return null;
         }
         private int GroupId
         {
@@ -37,7 +40,7 @@ namespace AccessManagementService.Controls
             get; set;
         }
 
-        private string GroupName
+        public string GroupName
         {
             get
             {

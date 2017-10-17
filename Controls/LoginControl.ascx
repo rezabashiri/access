@@ -62,7 +62,9 @@
                 </section>
             </fieldset>
             <footer>
-                <asp:Button ID="btnLogin" Width="100%" OnClick="btnLogin_Click" CssClass="btn btn-primary" ValidateRequestMode="Enabled" CausesValidation="true" ValidationGroup="aut" runat="server" Text="ورود" />
+                
+                    <uc1:MoroorgaranButton ID="btnLogin" Width="100%" ValidateionType="cancel" OnClick="btnLogin_Click" CssClass="btn btn-primary" ValidateRequestMode="Enabled" CausesValidation="true" ValidationGroup="aut" runat="server" Text="ورود"  />
+
                 <div class="col-sm-12 text-center">
 
                     <%--<a target="_blank" name="سیستم های اطلاعاتی | تلفن های هوشمند | وب سایت | نرم افزارهای اندروید" href="http://moroorgaran.com">شرکت مرورگران نوآوری توسعه  </a>--%>

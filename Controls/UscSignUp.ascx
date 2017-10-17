@@ -66,15 +66,15 @@
 
 
                     <section id="SectionRoleGroup" runat="server">
-                     
-                        <div  class="col-md-3">گروه ثبت نامی</div>
-                        <div class="col-md-3">
-                        <telerik:RadComboBox DataTextField="GroupName" Skin="Web20" Filter="Contains" AppendDataBoundItems="true" DataValueField="ID" SelectMethod="Group_Get" ID="cmbRoleGroup" runat="server" CssClass="right">
-                            <Items>
-                                <telerik:RadComboBoxItem Text="انتخاب کنید" Value="" />
-                            </Items>
-                        </telerik:RadComboBox>
-                        </div>
+                      <label class="label">گروه ثبت نامی</label>
+                        <label class="input">
+                            <asp:DropDownList DataTextField="GroupName" runat="server" CssClass="validate[required] form-control "  AppendDataBoundItems="true" DataValueField="ID" SelectMethod="Group_Get" ID="cmbRoleGroup">
+                                <asp:ListItem Text="انتخاب کنید" Value="">
+
+                                </asp:ListItem>
+                            </asp:DropDownList>
+                   
+                        </label>
                            
                     </section>
 
