@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AccessManagementService.Helpers;
 using AccessManagementService.Classes;
 using System.Web.UI.HtmlControls;
 
@@ -98,7 +97,7 @@ namespace AccessManagementService.Controls
                 if (txtverificationCode.Text == VerficationCode)
                 {
                     signUp su = new Classes.signUp();
-                    su.activeUsers(Username, GroupName,OrganizationRoleName);
+                    su.activeUsers(Username, GroupName, OrganizationRoleName);
                     if (OnVerificationComplete != null)
                     {
                         OnVerificationComplete(Access.UserActiveStatus.Active);
@@ -112,7 +111,7 @@ namespace AccessManagementService.Controls
                 {
                     WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "alert", "alert('متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید');", true);
                     //messageVerifiaction1.ShowMessage(btnOK,"متاسفانه کد ارسالی صحیح نمی باشد. لطفا مجددا تلاش فرمائید", WebUtility.Controls.MessageBox.MessageType.danger);
-                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('#"+ModalId+"').modal('hide');", true);
+                    WebUtility.Helpers.RegisterHelpers.RegisterScript(btnOK, "modal_hide", "$('#" + ModalId + "').modal('hide');", true);
 
                     if (OnVerificationComplete != null)
                     {
@@ -128,15 +127,17 @@ namespace AccessManagementService.Controls
 
         }
 
-        public event Helpers.SMS.SendSms OnSend;
+        //public event Helpers.SMS.SendSms OnSend;
+
+        public event WebUtility.Helpers.SendSMS.SendSms OnSend;
+
         public void sendSms(string receptorTell, string verificationCode)
         {
-            SMS s = new SMS();
+            WebUtility.Helpers.VerificationStatus vs;
 
-            VerificationStatus vs;
+            WebUtility.Helpers.SendSMS sms = new WebUtility.Helpers.SendSMS("10000400044000", "517A737A6D465A692F3569484E6C53545033426975513D3D");
 
-            //if (receptorTell != null && verificationCode != null)
-            vs = s.SendToANumber(receptorTell, verificationCode);
+            vs = sms.SendToANumber(receptorTell, "verify", verificationCode);
             OnSend(vs);
         }
     }

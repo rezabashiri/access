@@ -16,6 +16,7 @@ namespace AccessManagementService
 
             //UscSignUp.OnSendVerificationCode += UscSignUp_OnSendVerificationCode;
             //UscSignUp.OnVerificationComplete += UscSignUp_OnVerificationComplete;
+
         }
 
         private void UscSignUp_OnVerificationComplete(AccessManagementService.Access.UserActiveStatus status)
@@ -31,19 +32,19 @@ namespace AccessManagementService
             }
         }
 
-        private void UscSignUp_OnSendVerificationCode(AccessManagementService.Helpers.VerificationStatus Status)
+        private void UscSignUp_OnSendVerificationCode(WebUtility.Helpers.VerificationStatus Status)
         {
 
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-          //  MessageBox1.ShowMessage("ssssB", WebUtility.Controls.MessageBox.MessageType.info);
+            //  MessageBox1.ShowMessage("ssssB", WebUtility.Controls.MessageBox.MessageType.info);
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-          //  uscMessage3.ShowMessage("ssssB3", WebUtility.Controls.MessageBox.MessageType.danger);
+            //  uscMessage3.ShowMessage("ssssB3", WebUtility.Controls.MessageBox.MessageType.danger);
 
         }
     }
